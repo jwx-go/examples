@@ -5,11 +5,9 @@ import (
 	"fmt"
 
 	"github.com/cloudflare/circl/sign/ed448"
-	"github.com/lestrrat-go/jwx/v4/jwa"
+	ed448ext "github.com/jwx-go/ed448/v4"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
-
-	_ "github.com/jwx-go/ed448/v4"
 )
 
 func Example_jws_ed448() {
@@ -23,13 +21,13 @@ func Example_jws_ed448() {
 	payload := []byte("Hello, Ed448!")
 
 	// Sign and verify with raw keys
-	signed, err := jws.Sign(payload, jws.WithKey(jwa.EdDSAEd448(), priv))
+	signed, err := jws.Sign(payload, jws.WithKey(ed448ext.EdDSAEd448(), priv))
 	if err != nil {
 		fmt.Printf("failed to sign: %s\n", err)
 		return
 	}
 
-	verified, err := jws.Verify(signed, jws.WithKey(jwa.EdDSAEd448(), pub))
+	verified, err := jws.Verify(signed, jws.WithKey(ed448ext.EdDSAEd448(), pub))
 	if err != nil {
 		fmt.Printf("failed to verify: %s\n", err)
 		return
@@ -50,13 +48,13 @@ func Example_jws_ed448() {
 	}
 
 	// Sign and verify with JWK keys
-	signed, err = jws.Sign(payload, jws.WithKey(jwa.EdDSAEd448(), jwkPriv))
+	signed, err = jws.Sign(payload, jws.WithKey(ed448ext.EdDSAEd448(), jwkPriv))
 	if err != nil {
 		fmt.Printf("failed to sign with JWK key: %s\n", err)
 		return
 	}
 
-	verified, err = jws.Verify(signed, jws.WithKey(jwa.EdDSAEd448(), jwkPub))
+	verified, err = jws.Verify(signed, jws.WithKey(ed448ext.EdDSAEd448(), jwkPub))
 	if err != nil {
 		fmt.Printf("failed to verify with JWK key: %s\n", err)
 		return
@@ -70,7 +68,7 @@ func Example_jws_ed448() {
 		return
 	}
 
-	parsed, err := jwk.ParseKey(buf)
+	parsed, err := jwk.ParseKey[jwk.Key](buf)
 	if err != nil {
 		fmt.Printf("failed to parse JWK: %s\n", err)
 		return
