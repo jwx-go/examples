@@ -5,8 +5,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/emmansun/gmsm v0.41.1 h1:mD1MqmaXTEqt+9UVmDpRYvcEMIa5vuslFEnw7IWp6/w=
 github.com/emmansun/gmsm v0.41.1/go.mod h1:FD1EQk4XcSMkahZFzNwFoI/uXzAlODB9JVsJ9G5N7Do=
-github.com/jwx-go/ed448/v4 v4.0.0-alpha2 h1:T1EySrIQd/wMSKsALVVAw2IMdsb0dXcf0iFWYZA50NU=
-github.com/jwx-go/ed448/v4 v4.0.0-alpha2/go.mod h1:vqMXxTmTqF8gA8+xa85x4wcH7bAMfvqXi2beOpYbiXA=
+github.com/jwx-go/ed448/v4 v4.0.0-alpha3 h1:M2PMuq3sqnUqg5Ty9WVl0vxXAFucLNLtLhsfi98in1I=
+github.com/jwx-go/ed448/v4 v4.0.0-alpha3/go.mod h1:vqMXxTmTqF8gA8+xa85x4wcH7bAMfvqXi2beOpYbiXA=
 github.com/jwx-go/jwkcache/v4 v4.0.0-alpha1 h1:ArLzFb6KBJH/ckIPwYUkNCyRyEMj+yZFSR9XF0mV67Y=
 github.com/jwx-go/jwkcache/v4 v4.0.0-alpha1/go.mod h1:HxNCdRdvOvJdAvXn+JQ/zcGdrDgBOg2xL64/eftgrpc=
 github.com/lestrrat-go/blackmagic v1.0.4 h1:IwQibdnf8l2KoO+qC3uT4OaTWsW7tuRQXy9TRN9QanA=
