@@ -14,7 +14,7 @@ require (
 	github.com/jwx-go/mldsa/v4 v4.0.0-alpha1
 	github.com/jwx-go/x448/v4 v4.0.0-alpha2
 	github.com/lestrrat-go/httprc/v3 v3.0.5
-	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.5
+	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.6
 )
 
 require (
