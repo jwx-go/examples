@@ -7,6 +7,7 @@ require (
 	github.com/cloudflare/circl v1.6.3
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
 	github.com/emmansun/gmsm v0.41.1
+	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha1
 	github.com/jwx-go/ed448/v4 v4.0.0-alpha3
 	github.com/jwx-go/es256k/v4 v4.0.0-alpha1
 	github.com/jwx-go/jwkcache/v4 v4.0.0-alpha1
@@ -23,6 +24,7 @@ require (
 	github.com/lestrrat-go/httpcc v1.0.1 // indirect
 	github.com/lestrrat-go/option/v2 v2.0.0 // indirect
 	github.com/lestrrat-go/option/v3 v3.0.0-alpha1 // indirect
+	github.com/segmentio/asm v1.2.1 // indirect
 	github.com/valyala/fastjson v1.6.10 // indirect
 	golang.org/x/crypto v0.49.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
