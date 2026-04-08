@@ -1,0 +1,66 @@
+version: "2"
+linters:
+  default: all
+  disable:
+    - cyclop
+    - depguard
+    - dupl
+    - err113
+    - errorlint
+    - exhaustive
+    - exhaustruct
+    - funcorder
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - gosec
+    - gosmopolitan
+    - inamedparam
+    - ireturn
+    - lll
+    - maintidx
+    - makezero
+    - mnd
+    - nakedret
+    - nestif
+    - nlreturn
+    - noinlineerr
+    - nonamedreturns
+    - paralleltest
+    - perfsprint
+    - recvcheck
+    - tagliatelle
+    - testifylint
+    - testpackage
+    - thelper
+    - varnamelen
+    - wrapcheck
+    - wsl
+    - wsl_v5
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - errcheck
+          - errchkjson
+          - forcetypeassert
+        path: /*_test.go
+      - linters:
+          - forbidigo
+        path: /*_example_test.go
+      - linters:
+          - staticcheck
+        text: "QF1011"
+      - linters:
+          - staticcheck
+        text: "QF1008"
