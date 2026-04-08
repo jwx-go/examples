@@ -6,7 +6,6 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"fmt"
-	"math/big"
 
 	"github.com/emmansun/gmsm/sm2"
 	"github.com/lestrrat-go/jwx/v4/jwa"
@@ -62,26 +61,15 @@ func convertJWKToShangMiSm2(key jwk.Key, hint any) (any, error) {
 		return nil, fmt.Errorf(`cannot convert curve of type %s to ShangMi key: %w`, v, jwk.ContinueError())
 	}
 
-	var ret sm2.PrivateKey
-	ret.PublicKey.Curve = sm2.P256()
 	d, ok := ecdsaKey.D()
 	if !ok {
 		return nil, fmt.Errorf(`missing D field in ECDSA private key: %w`, jwk.ContinueError())
 	}
-	ret.D = (&big.Int{}).SetBytes(d)
-
-	x, ok := ecdsaKey.X()
-	if !ok {
-		return nil, fmt.Errorf(`missing X field in ECDSA private key: %w`, jwk.ContinueError())
+	ret, err := sm2.NewPrivateKey(d)
+	if err != nil {
+		return nil, fmt.Errorf(`failed to create SM2 private key: %w`, err)
 	}
-	ret.PublicKey.X = (&big.Int{}).SetBytes(x)
-
-	y, ok := ecdsaKey.Y()
-	if !ok {
-		return nil, fmt.Errorf(`missing Y field in ECDSA private key: %w`, jwk.ContinueError())
-	}
-	ret.PublicKey.Y = (&big.Int{}).SetBytes(y)
-	return &ret, nil
+	return ret, nil
 }
 
 // End setup
@@ -104,24 +92,9 @@ func Example_shang_mi_sm2() {
 			return
 		}
 
-		// Clone should have same Crv, D, X, and Y values
-		if clone.Curve != shangmi2pk.Curve {
-			fmt.Println("curve does not match")
-			return
-		}
-
-		if clone.D.Cmp(shangmi2pk.D) != 0 {
-			fmt.Println("D does not match")
-			return
-		}
-
-		if clone.X.Cmp(shangmi2pk.X) != 0 {
-			fmt.Println("X does not match")
-			return
-		}
-
-		if clone.Y.Cmp(shangmi2pk.Y) != 0 {
-			fmt.Println("Y does not match")
+		// Clone should be equal to the original key
+		if !clone.Equal(shangmi2pk) {
+			fmt.Println("keys do not match")
 			return
 		}
 	}

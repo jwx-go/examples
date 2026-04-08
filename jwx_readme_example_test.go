@@ -58,7 +58,7 @@ func Example() {
 
 		// Work with *http.Request!
 		{
-			req, err := http.NewRequest(http.MethodGet, `https://github.com/lestrrat-go/jwx`, nil)
+			req, _ := http.NewRequest(http.MethodGet, `https://github.com/lestrrat-go/jwx`, nil)
 			req.Header.Set(`Authorization`, fmt.Sprintf(`Bearer %s`, signed))
 
 			verifiedToken, err := jwt.ParseRequest(req, jwt.WithKey(jwa.RS256(), pubkey))
