@@ -4,16 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    labels:
-      - "dependencies"
-    commit-message:
-      prefix: "deps"
-
+    target-branch: "develop/v4"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    labels:
-      - "dependencies"
-    commit-message:
-      prefix: "ci"
+    target-branch: "develop/v4"
