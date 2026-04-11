@@ -27,3 +27,15 @@ Good: `// Sign the payload using ML-DSA-65. The algorithm must match the key's p
 
 - All files use `package examples_test`.
 - Build requires `GOEXPERIMENT=jsonv2`.
+
+## Branch Policy
+
+| Branch | Purpose |
+|--------|---------|
+| `v*` (e.g. `v4`) | Release tags only. NEVER commit directly to these branches. |
+| `develop/v*` (e.g. `develop/v4`) | Active development. All feature branches merge here. |
+| Feature branches | Branch from `develop/v*`, merge back via PR. |
+
+- Tags are cut from `v*` branches.
+- `v*` branches should never be directly worked on.
+- Regular development happens on `develop/v*` and feature branches.
