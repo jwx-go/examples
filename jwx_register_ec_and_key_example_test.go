@@ -26,19 +26,31 @@ import (
 var SM2 = jwa.NewEllipticCurveAlgorithm("SM2")
 
 func init() {
+	// Every jwx Register* function returns error. The current
+	// implementations always return nil, but the error return is
+	// reserved for future validation (duplicate detection, etc.).
+	// Extension init() code should panic on failure — a registration
+	// that silently fails would leave the extension half-wired in
+	// ways that only surface at call time.
+	panicOnRegistrationError := func(err error) {
+		if err != nil {
+			panic(fmt.Sprintf("sm2 example: registration failed: %s", err))
+		}
+	}
+
 	// Register the algorithm name so it can be looked up
-	jwa.RegisterEllipticCurveAlgorithm(SM2)
+	panicOnRegistrationError(jwa.RegisterEllipticCurveAlgorithm(SM2))
 
 	// Register the actual ECDSA curve. Notice that we need to tell this
 	// to our jwk library, so that the JWK lookup can be done properly
 	// when a raw SM2 key is passed to various key operations.
-	ourecdsa.RegisterCurve(SM2, sm2.P256())
+	panicOnRegistrationError(ourecdsa.RegisterCurve(SM2, sm2.P256()))
 
 	// We only need one converter for the private key, because the public key
 	// is exactly the same type as *ecdsa.PublicKey
-	jwk.RegisterKeyImporter(convertShangMiSm2)
+	panicOnRegistrationError(jwk.RegisterKeyImporter(convertShangMiSm2))
 
-	jwk.RegisterKeyExporter(jwk.KeyKind(jwa.EC().String()), jwk.KeyExportFunc(convertJWKToShangMiSm2))
+	panicOnRegistrationError(jwk.RegisterKeyExporter(jwk.KeyKind(jwa.EC().String()), jwk.KeyExportFunc(convertJWKToShangMiSm2)))
 }
 
 func convertShangMiSm2(key *sm2.PrivateKey) (jwk.Key, error) {

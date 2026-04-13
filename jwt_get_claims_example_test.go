@@ -48,8 +48,14 @@ func Example_jwt_get_claims() {
 
 	// However, it is possible to globally specify that a private
 	// claim should be parsed into a custom type.
-	// In the sample below `claim2` is to be an instance of time.Time
-	jwt.RegisterCustomField[time.Time](`claim2`)
+	// In the sample below `claim2` is to be an instance of time.Time.
+	// jwx's Register* functions return error to leave room for future
+	// validation — always check the return value even though today's
+	// implementation never fails.
+	if err := jwt.RegisterCustomField[time.Time](`claim2`); err != nil {
+		fmt.Printf(`failed to register custom field: %s`, err)
+		return
+	}
 
 	tok = jwt.New()
 	if err := json.Unmarshal([]byte(`{"claim2":"2022-05-16T07:35:56+00:00"}`), tok); err != nil {
@@ -70,9 +76,12 @@ func Example_jwt_get_claims() {
 	// For example, in the case of `claim3`, it needs to call `jwk.ParseKey`
 	// which returns an interface that can't be instantiated like the
 	// `time.Time` value for `claim2`.
-	jwt.RegisterCustomDecoder(`claim3`, jwt.CustomDecodeFunc[jwk.Key](func(data []byte) (jwk.Key, error) {
+	if err := jwt.RegisterCustomDecoder(`claim3`, jwt.CustomDecodeFunc[jwk.Key](func(data []byte) (jwk.Key, error) {
 		return jwk.ParseKey[jwk.Key](data)
-	}))
+	})); err != nil {
+		fmt.Printf(`failed to register custom decoder: %s`, err)
+		return
+	}
 
 	tok = jwt.New()
 	if err := json.Unmarshal([]byte(`{"claim3": {"kty": "oct", "alg":"A128KW", "k":"GawgguFyGrWKav7AX4VKUg"}}`), tok); err != nil {
