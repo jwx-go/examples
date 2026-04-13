@@ -1,0 +1,16 @@
+Changes
+=======
+
+v4.0.1 13 Apr 2026
+  * Bump companion deps to latest alpha releases (asmbase64 v4.0.0-alpha3,
+    es256k v4.0.0-alpha2, jwkcache v4.0.0-alpha2, mldsa v4.0.0-alpha2,
+    x448 v4.0.0-alpha3).
+  * Add ML-KEM JWE example (mlkem_encrypt_decrypt_example_test.go).
+  * Add composite signature JWS example (compsig_sign_verify_example_test.go,
+    ML-DSA-65 + ECDSA P-256).
+  * Add hybrid PQ HPKE JWE example (pqchpke_encrypt_decrypt_example_test.go,
+    HPKE-10-KE / X-Wing).
+
+v4.0.0 8 Apr 2026
+  * Initial release. Runnable example coverage for jwt, jws, jwe, jwk,
+    and the cross-package jwx readme example, plus ed448 JWS examples.
