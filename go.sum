@@ -29,8 +29,8 @@ github.com/jwx-go/x448/v4 v4.0.0-alpha3 h1:DgnQDt4db7vOKZbIhm/5b7J0FANizlkcQ8wQs
 github.com/jwx-go/x448/v4 v4.0.0-alpha3/go.mod h1:0THp/gx+1E+Byb3Rlr5ozNsai5eT51d3liDnD5/hqpU=
 github.com/lestrrat-go/blackmagic v1.0.4 h1:IwQibdnf8l2KoO+qC3uT4OaTWsW7tuRQXy9TRN9QanA=
 github.com/lestrrat-go/blackmagic v1.0.4/go.mod h1:6AWFyKNNj0zEXQYfTMPfZrAXUWUfTIZ5ECEUEJaijtw=
-github.com/lestrrat-go/dsig v1.2.2 h1:CdlTKX9H1GiPlU7WILGxds+wb41KkPnyyqvt57PRE2M=
-github.com/lestrrat-go/dsig v1.2.2/go.mod h1:RD2eOaidyPvpc7IJQoO3Qq52RWdy8ZcJs8lrOnoa1Kc=
+github.com/lestrrat-go/dsig v1.3.0 h1:phjMOCXvYzhuIgn7Voe2rex8z166vGfxRxmqM25P9/Q=
+github.com/lestrrat-go/dsig v1.3.0/go.mod h1:RD2eOaidyPvpc7IJQoO3Qq52RWdy8ZcJs8lrOnoa1Kc=
 github.com/lestrrat-go/dsig-circl-ed448 v1.0.0 h1:VijftNGJryFdDVhmrLMhxdKCRPK0VLGLJOy0C3i/Gso=
 github.com/lestrrat-go/dsig-circl-ed448 v1.0.0/go.mod h1:qhO/4wWfOPXbIB8rtbwUf4MA6SnTADBRZI1iZaWYj1Y=
 github.com/lestrrat-go/dsig-secp256k1 v1.0.0 h1:JpDe4Aybfl0soBvoVwjqDbp+9S1Y2OM7gcrVVMFPOzY=
@@ -39,8 +39,8 @@ github.com/lestrrat-go/httpcc v1.0.1 h1:ydWCStUeJLkpYyjLDHihupbn2tYmZ7m22BGkcvZZ
 github.com/lestrrat-go/httpcc v1.0.1/go.mod h1:qiltp3Mt56+55GPVCbTdM9MlqhvzyuL6W/NMDA8vA5E=
 github.com/lestrrat-go/httprc/v3 v3.0.5 h1:S+Mb4L2I+bM6JGTibLmxExhyTOqnXjqx+zi9MoXw/TM=
 github.com/lestrrat-go/httprc/v3 v3.0.5/go.mod h1:mSMtkZW92Z98M5YoNNztbRGxbXHql7tSitCvaxvo9l0=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.15 h1:YsYjBly5y9YzI345vk5dCzUZVBoZHzh0MlCsKyvrIbU=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.15/go.mod h1:SUc9pObPthy49nmAwo88XmQuf0lemWNrC3ijqMtRvy0=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.17 h1:R6P8Of0pT5yBk/Qjsz3VTwV9yotyHmL7ABGlL25vz6c=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.17/go.mod h1:IlbSfVeg2o2oa43Rnn0lXClSXh+xQHwVFATC7lbE6oU=
 github.com/lestrrat-go/option/v2 v2.0.0 h1:XxrcaJESE1fokHy3FpaQ/cXW8ZsIdWcdFzzLOcID3Ss=
 github.com/lestrrat-go/option/v2 v2.0.0/go.mod h1:oSySsmzMoR0iRzCDCaUfsCzxQHUEuhOViQObyy7S6Vg=
 github.com/lestrrat-go/option/v3 v3.0.0-alpha1 h1:dvdzLwm/Ba5CJUF3jQP7w/iNYSLfy7yyh9XXNa1WjxI=
