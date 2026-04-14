@@ -6,6 +6,7 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"fmt"
+	"math/big"
 
 	"github.com/emmansun/gmsm/sm2"
 	"github.com/lestrrat-go/jwx/v4/jwa"
@@ -44,7 +45,25 @@ func init() {
 	// Register the actual ECDSA curve. Notice that we need to tell this
 	// to our jwk library, so that the JWK lookup can be done properly
 	// when a raw SM2 key is passed to various key operations.
-	panicOnRegistrationError(ourecdsa.RegisterCurve(SM2, sm2.P256()))
+	//
+	// jwk/ecdsa.RegisterCurve requires a PointValidator; we use
+	// sm2.NewPublicKey as the non-deprecated equivalent of the old
+	// elliptic.Curve.IsOnCurve fallback. NewPublicKey takes an
+	// uncompressed SEC1 encoding, rejects compressed forms and the
+	// point at infinity, and performs on-curve validation via the
+	// library's constant-time path.
+	sm2PointValidator := ourecdsa.PointValidatorFunc(func(x, y *big.Int) error {
+		const coordSize = 32
+		buf := make([]byte, 1+2*coordSize)
+		buf[0] = 0x04
+		x.FillBytes(buf[1 : 1+coordSize])
+		y.FillBytes(buf[1+coordSize:])
+		if _, err := sm2.NewPublicKey(buf); err != nil {
+			return fmt.Errorf("invalid SM2 public key: %w", err)
+		}
+		return nil
+	})
+	panicOnRegistrationError(ourecdsa.RegisterCurve(SM2, sm2.P256(), sm2PointValidator))
 
 	// We only need one converter for the private key, because the public key
 	// is exactly the same type as *ecdsa.PublicKey

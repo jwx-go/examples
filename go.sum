@@ -15,8 +15,8 @@ github.com/jwx-go/compsig/v4 v4.0.0-alpha1 h1:TrYQDosNowSnnArtwyJe9j4kCDaCo4VWYx
 github.com/jwx-go/compsig/v4 v4.0.0-alpha1/go.mod h1:8BXmvVuMMXjd2cn/8qVx6WsqOMUFyrR+3jBcKMmJeag=
 github.com/jwx-go/ed448/v4 v4.0.0-alpha4 h1:tbOQASfEa7mj2VIWt3mdKW0S4XXy9Fr2F6q/BiSjVLY=
 github.com/jwx-go/ed448/v4 v4.0.0-alpha4/go.mod h1:XtxiSrb3ONUZYLtu5LQvBwUY9YVzNBIpPkbfQEMzmm8=
-github.com/jwx-go/es256k/v4 v4.0.0-alpha2 h1:4NVWTxPr/0JyfQQT4c/iUt3G/VPzuJeBs6k81bUVm7s=
-github.com/jwx-go/es256k/v4 v4.0.0-alpha2/go.mod h1:vEhIBfKptQSZGDCEAqFsdUkhNrgu8MoRlqQs1B3WdFE=
+github.com/jwx-go/es256k/v4 v4.0.0-alpha2.0.20260414102932-03f181c1c6bd h1:SS89041GrEbtlX7OdC5Of36Urfrk3FNKVixJHkyAbv8=
+github.com/jwx-go/es256k/v4 v4.0.0-alpha2.0.20260414102932-03f181c1c6bd/go.mod h1:R2rECdgCzWk7uxqn+R9VRZ1tHvf79VPhAD9zdS250Ig=
 github.com/jwx-go/jwkcache/v4 v4.0.0-alpha2 h1:LgWMtUOS+Opi6ZV9g/Q+Pgdd3g0OJqTAavziqyA7jS4=
 github.com/jwx-go/jwkcache/v4 v4.0.0-alpha2/go.mod h1:ZA9Q/vhwiAyyc2jgh7TXGJj2xYEkSu+mNmcPEOEynl4=
 github.com/jwx-go/mldsa/v4 v4.0.0-alpha2 h1:yzY5GghOF5W+FeADq9Q/iQvxwbnWoi2x8qboHeGcsk8=
@@ -39,8 +39,8 @@ github.com/lestrrat-go/httpcc v1.0.1 h1:ydWCStUeJLkpYyjLDHihupbn2tYmZ7m22BGkcvZZ
 github.com/lestrrat-go/httpcc v1.0.1/go.mod h1:qiltp3Mt56+55GPVCbTdM9MlqhvzyuL6W/NMDA8vA5E=
 github.com/lestrrat-go/httprc/v3 v3.0.5 h1:S+Mb4L2I+bM6JGTibLmxExhyTOqnXjqx+zi9MoXw/TM=
 github.com/lestrrat-go/httprc/v3 v3.0.5/go.mod h1:mSMtkZW92Z98M5YoNNztbRGxbXHql7tSitCvaxvo9l0=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.18 h1:y1/SKwskONk8o6WXih6qKvfVa3uQWHtsGnkCsL7kGrA=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.18/go.mod h1:IlbSfVeg2o2oa43Rnn0lXClSXh+xQHwVFATC7lbE6oU=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.19 h1:PQ36JL+RGwyf9HCBzX4fuQf+0YUlyqv+fbwFdpE/bTQ=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.19/go.mod h1:IlbSfVeg2o2oa43Rnn0lXClSXh+xQHwVFATC7lbE6oU=
 github.com/lestrrat-go/option/v2 v2.0.0 h1:XxrcaJESE1fokHy3FpaQ/cXW8ZsIdWcdFzzLOcID3Ss=
 github.com/lestrrat-go/option/v2 v2.0.0/go.mod h1:oSySsmzMoR0iRzCDCaUfsCzxQHUEuhOViQObyy7S6Vg=
 github.com/lestrrat-go/option/v3 v3.0.0-alpha1 h1:dvdzLwm/Ba5CJUF3jQP7w/iNYSLfy7yyh9XXNa1WjxI=
