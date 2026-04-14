@@ -10,7 +10,7 @@ require (
 	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha3
 	github.com/jwx-go/compsig/v4 v4.0.0-alpha1
 	github.com/jwx-go/ed448/v4 v4.0.0-alpha4
-	github.com/jwx-go/es256k/v4 v4.0.0-alpha2.0.20260414103307-4e373bf30618
+	github.com/jwx-go/es256k/v4 v4.0.0-alpha3
 	github.com/jwx-go/jwkcache/v4 v4.0.0-alpha2
 	github.com/jwx-go/mldsa/v4 v4.0.0-alpha2
 	github.com/jwx-go/mlkem/v4 v4.0.0-alpha1
