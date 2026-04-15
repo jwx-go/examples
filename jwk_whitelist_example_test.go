@@ -9,7 +9,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/lestrrat-go/jwx/v4/jwk"
+	"github.com/jwx-go/jwkfetch/v4"
 )
 
 func Example_jwk_whitelist() {
@@ -33,35 +33,39 @@ func Example_jwk_whitelist() {
 	}))
 	defer srv.Close()
 
+	// A Whitelist on a jwkfetch.Client is the "allow these URLs,
+	// block everything else" primitive. It is enforced on the initial
+	// URL AND on every redirect hop, so a hostile JWKS host cannot
+	// 302 the fetcher into an off-allowlist destination.
 	testcases := []struct {
-		Whitelist jwk.Whitelist
+		Whitelist jwkfetch.Whitelist
 		Error     bool
 	}{
-		// The first two whitelists are meant to prevent access to any other
-		// URLs other than www.google.com
+		// The first two whitelists restrict fetches to www.googleapis.com,
+		// so fetching srv.URL (an httptest server on 127.0.0.1) must fail.
 		{
-			Whitelist: jwk.NewMapWhitelist().Add(`https://www.googleapis.com/oauth2/v3/certs`),
+			Whitelist: jwkfetch.NewMapWhitelist().Add(`https://www.googleapis.com/oauth2/v3/certs`),
 			Error:     true,
 		},
 		{
-			Whitelist: jwk.NewRegexpWhitelist().Add(regexp.MustCompile(`^https://www\.googleapis\.com/`)),
+			Whitelist: jwkfetch.NewRegexpWhitelist().Add(regexp.MustCompile(`^https://www\.googleapis\.com/`)),
 			Error:     true,
 		},
-		// This whitelist allows anything
+		// InsecureWhitelist permits every URL. This is the same as
+		// constructing the Client without WithWhitelist at all; it is
+		// shown here only so you can name it explicitly in code review.
 		{
-			Whitelist: jwk.InsecureWhitelist{},
+			Whitelist: jwkfetch.InsecureWhitelist{},
 		},
 	}
 
 	for _, tc := range testcases {
-		set, err := jwk.Fetch(
-			context.Background(),
-			srv.URL,
-			// This is necessary because httptest.Server is using a custom certificate
-			jwk.WithHTTPClient(srv.Client()),
-			// Pass the whitelist!
-			jwk.WithFetchWhitelist(tc.Whitelist),
+		client := jwkfetch.NewClient(
+			// This is necessary because httptest.Server is using a custom certificate.
+			jwkfetch.WithHTTPClient(srv.Client()),
+			jwkfetch.WithWhitelist(tc.Whitelist),
 		)
+		set, err := client.Fetch(context.Background(), srv.URL)
 		if tc.Error {
 			if err == nil {
 				fmt.Printf("expected fetch to fail, but got no error\n")

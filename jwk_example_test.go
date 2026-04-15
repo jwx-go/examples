@@ -6,13 +6,16 @@ import (
 	"log"
 
 	"encoding/json"
+	"github.com/jwx-go/jwkfetch/v4"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 )
 
 func Example_jwk_usage() {
-	// For repeated access to a remote JWKS, consider the jwkcache extension module
-	// (github.com/jwx-go/jwkcache) which keeps a JWKS auto-refreshed in the background.
-	set, err := jwk.Fetch(context.Background(), "https://www.googleapis.com/oauth2/v3/certs")
+	// HTTP JWK Set retrieval lives in the jwkfetch extension module
+	// (github.com/jwx-go/jwkfetch). For a one-shot fetch, use
+	// jwkfetch.NewClient; for background-refreshed caching of a fixed
+	// set of trusted URLs, use jwkfetch.NewCache.
+	set, err := jwkfetch.NewClient().Fetch(context.Background(), "https://www.googleapis.com/oauth2/v3/certs")
 	if err != nil {
 		log.Printf("failed to parse JWK: %s", err)
 		return
