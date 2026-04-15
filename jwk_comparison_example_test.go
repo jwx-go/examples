@@ -1,4 +1,4 @@
-package examples
+package examples_test
 
 import (
 	"crypto/rand"
@@ -50,4 +50,5 @@ func Example_jwk_comparison() {
 		fmt.Printf("k1 and k1 should be equal")
 		return
 	}
+	// OUTPUT:
 }
