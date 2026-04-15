@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 
+	"github.com/jwx-go/jwkfetch/v4"
 	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
@@ -67,10 +68,26 @@ func Example_jwt_parse_with_jku() {
 		return
 	}
 
-	// We need to pass jwk.WithHTTPClient because we are using HTTPS,
-	// and we need the certificates setup
-	// We also need to explicitly set up the whitelist, this is required
-	tok, err := jwt.Parse(serialized, jwt.WithVerifyAuto(nil, jwk.WithHTTPClient(srv.Client()), jwk.WithFetchWhitelist(jwk.InsecureWhitelist{})))
+	// jku verification uses a jwk.Fetcher to retrieve the JWKS
+	// referenced in the JWS protected header. Use jwkfetch.Client —
+	// it is the canonical implementation and the one this option is
+	// designed around.
+	//
+	// IMPORTANT: the `jku` URL comes from the JWS protected header,
+	// which is untrusted input. A real application MUST pass
+	// jwkfetch.WithWhitelist with a MapWhitelist / RegexpWhitelist
+	// restricted to its known issuer set — otherwise a hostile peer
+	// can point the fetcher at any URL it can reach (SSRF) and have
+	// its own keys accepted as "the issuer's keys". This example uses
+	// srv.URL as a "known issuer" because httptest picks a random
+	// port each run.
+	client := jwkfetch.NewClient(
+		// httptest serves HTTPS with a self-signed cert, so the
+		// Client needs srv.Client() to validate it.
+		jwkfetch.WithHTTPClient(srv.Client()),
+		jwkfetch.WithWhitelist(jwkfetch.NewMapWhitelist().Add(srv.URL)),
+	)
+	tok, err := jwt.Parse(serialized, jwt.WithVerifyAuto(client))
 	if err != nil {
 		fmt.Printf("failed to verify token: %s\n", err)
 		return

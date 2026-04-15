@@ -12,7 +12,7 @@ import (
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
 
-	"github.com/jwx-go/jwkcache/v4"
+	"github.com/jwx-go/jwkfetch/v4"
 )
 
 func Example_jwk_cached_set() {
@@ -22,7 +22,7 @@ func Example_jwk_cached_set() {
 	const googleCerts = `https://www.googleapis.com/oauth2/v3/certs`
 
 	// The first steps are the same as examples/jwk_cache_example_test.go
-	c, err := jwkcache.NewCache(
+	c, err := jwkfetch.NewCache(
 		ctx,
 		httprc.NewClient(
 			httprc.WithTraceSink(tracesink.NewSlog(slog.New(slog.NewJSONHandler(os.Stderr, nil)))),
@@ -40,8 +40,8 @@ func Example_jwk_cached_set() {
 	if err := c.Register(
 		ctx,
 		googleCerts,
-		jwkcache.WithMaxInterval(24*time.Hour*7),
-		jwkcache.WithMinInterval(15*time.Minute),
+		jwkfetch.WithMaxInterval(24*time.Hour*7),
+		jwkfetch.WithMinInterval(15*time.Minute),
 	); err != nil {
 		fmt.Printf("failed to register google JWKS: %s\n", err)
 		return
@@ -59,7 +59,7 @@ func Example_jwk_cached_set() {
 	// That means you can pass it to things like jws.WithKeySet,
 	// allowing you to pretend as if you are using the result of
 	//
-	//   jwk.Fetch(ctx, googleCerts)
+	//   jwkfetch.NewClient().Fetch(ctx, googleCerts)
 	//
 	// But you are instead using a cached (and periodically refreshed) set
 	// for each operation.

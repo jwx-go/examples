@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"os"
 
-	"github.com/lestrrat-go/jwx/v4/jwk"
+	"github.com/jwx-go/jwkfetch/v4"
 )
 
 func Example_jwk_fetch() {
@@ -32,12 +32,18 @@ func Example_jwk_fetch() {
 	}))
 	defer srv.Close()
 
-	set, err := jwk.Fetch(
-		context.Background(),
-		srv.URL,
-		// This is necessary because httptest.Server is using a custom certificate
-		jwk.WithHTTPClient(srv.Client()),
+	// HTTP JWK Set retrieval lives in the jwkfetch extension module.
+	// For a one-shot fetch, construct a jwkfetch.Client — it implements
+	// jwk.Fetcher so it plugs into jws/jwt WithVerifyAuto, but you can
+	// also call Fetch directly. The default Client permits every URL,
+	// which is fine for a trusted/hard-coded URL like this one; for a
+	// URL that comes from an untrusted source (e.g. a JWS jku header),
+	// construct the Client with jwkfetch.WithWhitelist.
+	client := jwkfetch.NewClient(
+		// This is necessary because httptest.Server is using a custom certificate.
+		jwkfetch.WithHTTPClient(srv.Client()),
 	)
+	set, err := client.Fetch(context.Background(), srv.URL)
 	if err != nil {
 		fmt.Printf("failed to fetch JWKS: %s\n", err)
 		return
