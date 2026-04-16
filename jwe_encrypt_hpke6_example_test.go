@@ -33,7 +33,9 @@ func Example_jwe_encrypt_hpke6() {
 	var pub circlx448.Key
 	circlx448.KeyGen(&pub, &seed)
 
-	privKey := x448mod.NewPrivateKey(seed, pub)
+	// NewPrivateKey derives the public key from the seed, which avoids
+	// constructing a JWK whose public and private halves disagree.
+	privKey := x448mod.NewPrivateKey(seed)
 
 	privJWK, err := jwk.Import[jwk.Key](privKey)
 	if err != nil {
