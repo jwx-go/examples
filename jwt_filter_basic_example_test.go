@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/jwx-go/jwxfilter/v4/jwtfilter"
 	"github.com/lestrrat-go/jwx/v4/jwt"
 )
 
 func Example_jwt_filter_basic_claims() {
-	// Create a token with standard and custom claims
+	// Create a token with standard and custom claims.
 	token, err := jwt.NewBuilder().
 		Issuer("github.com/lestrrat-go/jwx").
 		Subject("jwt_filter_example").
@@ -24,30 +25,33 @@ func Example_jwt_filter_basic_claims() {
 		return
 	}
 
-	// Create a custom claim name filter
-	customFilter := jwt.NewClaimNameFilter("customClaim", "applicationRole", "department")
+	// Filters live in the companion module github.com/jwx-go/jwxfilter/v4.
+	// They were moved out of core in v4 because sign / verify / parse do
+	// not depend on them. jwtfilter.ByName builds a filter that matches
+	// the specified claim names; the returned jwxfilter.Filter[jwt.Token]
+	// has Filter(token) and Reject(token) methods.
+	customFilter := jwtfilter.ByName("customClaim", "applicationRole", "department")
 
-	// Filter to get only custom claims
+	// Filter returns a fresh token containing only the matching claims.
 	if _, err := customFilter.Filter(token); err != nil {
 		fmt.Printf("failed to filter custom claims: %s\n", err)
 		return
 	}
-	// You could also use Reject to get all claims except the specified ones
-	// Note that this may include other non-standard claims
+	// Reject returns a fresh token with the matching claims removed.
 	if _, err := customFilter.Reject(token); err != nil {
 		fmt.Printf("failed to reject custom claims: %s\n", err)
 		return
 	}
 
-	// Use StandardClaimsFilter to get only standard JWT claims
-	if _, err = jwt.StandardClaimsFilter().Filter(token); err != nil {
+	// jwtfilter.Standard() is a preset filter targeting the seven RFC 7519
+	// claims (aud, exp, iat, iss, jti, nbf, sub). Filter keeps only them;
+	// Reject keeps only non-standard (custom) claims.
+	if _, err = jwtfilter.Standard().Filter(token); err != nil {
 		fmt.Printf("failed to filter standard claims: %s\n", err)
 		return
 	}
 
-	// Use StandardClaimsFilter to reject standard claims, resulting
-	// in every non-standard claim being retained
-	if _, err = jwt.StandardClaimsFilter().Reject(token); err != nil {
+	if _, err = jwtfilter.Standard().Reject(token); err != nil {
 		fmt.Printf("failed to reject standard claims: %s\n", err)
 		return
 	}

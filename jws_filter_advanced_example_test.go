@@ -3,6 +3,7 @@ package examples_test
 import (
 	"fmt"
 
+	"github.com/jwx-go/jwxfilter/v4/jwsfilter"
 	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
@@ -61,7 +62,7 @@ func Example_jws_header_filter_advanced() {
 		originalHeaders := sig.ProtectedHeaders()
 
 		// Use case 1: Filter by service-related fields
-		serviceFilter := jws.NewHeaderNameFilter("service", "datacenter", "backup-priority")
+		serviceFilter := jwsfilter.ByName("service", "datacenter", "backup-priority")
 		_, err := serviceFilter.Filter(originalHeaders)
 		if err != nil {
 			fmt.Printf("failed to filter service headers: %s\n", err)
@@ -69,7 +70,7 @@ func Example_jws_header_filter_advanced() {
 		}
 
 		// Use case 2: Create public headers (remove internal fields)
-		internalFilter := jws.NewHeaderNameFilter("internal-use", "security-level")
+		internalFilter := jwsfilter.ByName("internal-use", "security-level")
 		_, err = internalFilter.Reject(originalHeaders)
 		if err != nil {
 			fmt.Printf("failed to create public headers: %s\n", err)
@@ -77,7 +78,7 @@ func Example_jws_header_filter_advanced() {
 		}
 
 		// Use case 3: Combine standard filter with custom filtering
-		standardFilter := jws.StandardHeadersFilter()
+		standardFilter := jwsfilter.Standard()
 		customFieldsOnly, err := standardFilter.Reject(originalHeaders)
 		if err != nil {
 			fmt.Printf("failed to extract custom fields: %s\n", err)
@@ -85,7 +86,7 @@ func Example_jws_header_filter_advanced() {
 		}
 
 		// Then filter custom fields for specific categories
-		operationalFilter := jws.NewHeaderNameFilter("service", "version", "datacenter")
+		operationalFilter := jwsfilter.ByName("service", "version", "datacenter")
 		_, err = operationalFilter.Filter(customFieldsOnly)
 		if err != nil {
 			fmt.Printf("failed to filter operational headers: %s\n", err)

@@ -6,6 +6,7 @@ import (
 	"crypto/rand"
 	"fmt"
 
+	"github.com/jwx-go/jwxfilter/v4/jwkfilter"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 )
 
@@ -110,12 +111,12 @@ func Example_jwk_filter_advanced_use_cases() {
 
 	// Advanced Use Case 1: Security classification filter
 	// Create different filters based on security levels
-	publicFieldsFilter := jwk.NewFieldNameFilter(
+	publicFieldsFilter := jwkfilter.ByName(
 		"securityLevel", "environment", "classification", "owner",
 		"contactEmail", "purpose", "auditRequired",
 	)
 
-	confidentialFieldsFilter := jwk.NewFieldNameFilter(
+	confidentialFieldsFilter := jwkfilter.ByName(
 		"dataTypes", "compliance", "backupLocation", "lastAudit",
 	)
 
@@ -134,7 +135,7 @@ func Example_jwk_filter_advanced_use_cases() {
 	}
 
 	// Advanced Use Case 2: Compliance-specific filtering
-	complianceFilter := jwk.NewFieldNameFilter(
+	complianceFilter := jwkfilter.ByName(
 		jwk.KeyIDKey, "environment", "purpose", "compliance",
 		"auditRequired", "lastAudit", "dataTypes",
 	)
@@ -152,7 +153,7 @@ func Example_jwk_filter_advanced_use_cases() {
 	}
 
 	// Advanced Use Case 3: Operational monitoring filter
-	opsFilter := jwk.NewFieldNameFilter(
+	opsFilter := jwkfilter.ByName(
 		jwk.KeyIDKey, "environment", "owner", "contactEmail",
 		"backupLocation", "lastAudit", "auditRequired",
 	)
@@ -164,7 +165,7 @@ func Example_jwk_filter_advanced_use_cases() {
 	}
 
 	// Advanced Use Case 4: Remove all custom metadata for pure cryptographic use
-	stdFilter := jwk.ECDSAStandardFieldsFilter()
+	stdFilter := jwkfilter.ECDSAStandard()
 	cryptoDevKey, err := stdFilter.Filter(devJWK)
 	if err != nil {
 		fmt.Printf("failed to create crypto key: %s\n", err)

@@ -12,12 +12,13 @@ require (
 	github.com/jwx-go/ed448/v4 v4.0.0-alpha4.0.20260416134430-9a949bdaf36e
 	github.com/jwx-go/es256k/v4 v4.0.0-alpha3
 	github.com/jwx-go/jwkfetch/v4 v4.0.0-alpha1
+	github.com/jwx-go/jwxfilter/v4 v4.0.0-20260417063039-928b8d22830e
 	github.com/jwx-go/mldsa/v4 v4.0.0-alpha3
 	github.com/jwx-go/mlkem/v4 v4.0.0-alpha1
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.0-alpha2
 	github.com/jwx-go/x448/v4 v4.0.0-alpha3.0.20260416134322-ef039b63c2dc
 	github.com/lestrrat-go/httprc/v3 v3.0.5
-	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.23
+	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26
 )
 
 require (

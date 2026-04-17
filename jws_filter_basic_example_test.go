@@ -3,20 +3,20 @@ package examples_test
 import (
 	"fmt"
 
+	"github.com/jwx-go/jwxfilter/v4/jwsfilter"
 	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
 )
 
 func Example_jws_header_filter_basic() {
-	// Create a key for signing
 	key, err := jwk.Import[jwk.Key]([]byte(`my-secret-key`))
 	if err != nil {
 		fmt.Printf("failed to create key: %s\n", err)
 		return
 	}
 
-	// Create headers with both standard and custom fields
+	// Build JWS headers with both RFC 7515 standard fields and custom ones.
 	headers := jws.NewHeaders()
 	headers.Set(jws.AlgorithmKey, jwa.HS256())
 	headers.Set(jws.KeyIDKey, "key-2024")
@@ -25,7 +25,6 @@ func Example_jws_header_filter_basic() {
 	headers.Set("app-version", "v1.2.3")
 	headers.Set("environment", "production")
 
-	// Sign with custom headers
 	payload := []byte(`{"user": "alice", "role": "admin"}`)
 	signed, err := jws.Sign(payload, jws.WithKey(jwa.HS256(), key, jws.WithProtectedHeaders(headers)))
 	if err != nil {
@@ -33,7 +32,6 @@ func Example_jws_header_filter_basic() {
 		return
 	}
 
-	// Parse the signed message to access headers
 	msg, err := jws.Parse(signed)
 	if err != nil {
 		fmt.Printf("failed to parse: %s\n", err)
@@ -42,26 +40,27 @@ func Example_jws_header_filter_basic() {
 
 	originalHeaders := msg.Signatures()[0].ProtectedHeaders()
 
-	// Filter 1: Extract only custom fields using HeaderNameFilter
-	customFilter := jws.NewHeaderNameFilter("custom-claim", "app-version", "environment")
-	_, err = customFilter.Filter(originalHeaders)
-	if err != nil {
+	// Filters were extracted out of core into github.com/jwx-go/jwxfilter/v4.
+	// jwsfilter.ByName builds a filter over jws.Headers for the given
+	// field names; Filter keeps the match, Reject removes it. Each call
+	// returns a fresh jws.Headers, so the original is left untouched.
+	customFilter := jwsfilter.ByName("custom-claim", "app-version", "environment")
+	if _, err = customFilter.Filter(originalHeaders); err != nil {
 		fmt.Printf("failed to filter custom headers: %s\n", err)
 		return
 	}
 
-	// Filter 2: Extract only standard fields using StandardHeadersFilter
-	standardFilter := jws.StandardHeadersFilter()
-	_, err = standardFilter.Filter(originalHeaders)
-	if err != nil {
+	// jwsfilter.Standard() is the preset for the 11 RFC 7515 headers
+	// (alg, cty, crit, jwk, jku, kid, typ, x5c, x5t, x5t#S256, x5u).
+	if _, err = jwsfilter.Standard().Filter(originalHeaders); err != nil {
 		fmt.Printf("failed to filter standard headers: %s\n", err)
 		return
 	}
 
-	// Filter 3: Remove sensitive custom fields using Reject
-	sensitiveFilter := jws.NewHeaderNameFilter("custom-claim")
-	_, err = sensitiveFilter.Reject(originalHeaders)
-	if err != nil {
+	// Reject removes the named fields and keeps everything else — useful
+	// for scrubbing a specific sensitive extension header before logging.
+	sensitiveFilter := jwsfilter.ByName("custom-claim")
+	if _, err = sensitiveFilter.Reject(originalHeaders); err != nil {
 		fmt.Printf("failed to reject sensitive headers: %s\n", err)
 		return
 	}
