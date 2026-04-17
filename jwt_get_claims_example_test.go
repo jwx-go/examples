@@ -77,7 +77,7 @@ func Example_jwt_get_claims() {
 	// which returns an interface that can't be instantiated like the
 	// `time.Time` value for `claim2`.
 	if err := jwt.RegisterCustomDecoder(`claim3`, jwt.CustomDecodeFunc[jwk.Key](func(data []byte) (jwk.Key, error) {
-		return jwk.ParseKey[jwk.Key](data)
+		return jwk.ParseKey(data)
 	})); err != nil {
 		fmt.Printf(`failed to register custom decoder: %s`, err)
 		return
