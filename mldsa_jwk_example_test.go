@@ -56,7 +56,7 @@ func Example_mldsa_jwk() {
 	// Parse back from JSON. Because the mldsa package registered the ML-DSA
 	// signature algorithms at init time, jwk.ParseKey can resolve "ML-DSA-44"
 	// in the "alg" field and reconstruct the key correctly.
-	parsed, err := jwk.ParseKey[jwk.Key](serialized)
+	parsed, err := jwk.ParseKey(serialized)
 	if err != nil {
 		fmt.Printf("failed to parse JWK: %s\n", err)
 		return

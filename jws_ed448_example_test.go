@@ -68,7 +68,7 @@ func Example_jws_ed448() {
 		return
 	}
 
-	parsed, err := jwk.ParseKey[jwk.Key](buf)
+	parsed, err := jwk.ParseKey(buf)
 	if err != nil {
 		fmt.Printf("failed to parse JWK: %s\n", err)
 		return

@@ -51,7 +51,7 @@ func Example_jwx_asmbase64() {
 	// exercised here — it decodes the base64url "k" field back to raw
 	// bytes. If the asm decoder produced different output than the
 	// standard library, the round-trip would fail.
-	parsed, err := jwk.ParseKey[jwk.Key](serialized)
+	parsed, err := jwk.ParseKey(serialized)
 	if err != nil {
 		fmt.Printf("failed to parse JWK: %s\n", err)
 		return

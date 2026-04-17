@@ -26,7 +26,7 @@ func Example_jwk_import() {
 	// What you want to do is to _parse_ `buf`.
 	//
 	//  keyset, _ := jwk.Parse(buf)
-	//  key, _    := jwk.ParseKey[jwk.Key](buf)
+	//  key, _    := jwk.ParseKey(buf)
 	//
 	// See other examples in examples/jwk_parse_key_example_test.go and
 	// examples/jwk_parse_jwks_example_test.go
