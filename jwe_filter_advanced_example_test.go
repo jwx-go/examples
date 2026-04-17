@@ -3,6 +3,7 @@ package examples_test
 import (
 	"fmt"
 
+	"github.com/jwx-go/jwxfilter/v4/jwefilter"
 	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwe"
 )
@@ -37,7 +38,7 @@ func Example_jwe_filter_advanced() {
 	headers := protectedHeaders
 
 	// Advanced Example 1: Service Integration - Filter service-related headers
-	serviceFilter := jwe.NewHeaderNameFilter("service_name", "api_version", "request_id", "correlation_id", jwe.KeyIDKey)
+	serviceFilter := jwefilter.ByName("service_name", "api_version", "request_id", "correlation_id", jwe.KeyIDKey)
 	serviceHeaders, err := serviceFilter.Filter(headers)
 	if err != nil {
 		fmt.Printf("Failed to filter service headers: %s\n", err)
@@ -45,7 +46,7 @@ func Example_jwe_filter_advanced() {
 	}
 
 	// Advanced Example 2: Security Headers - Filter security-related metadata
-	securityFilter := jwe.NewHeaderNameFilter("security_level", "access_control", "encryption_version", jwe.AlgorithmKey, jwe.ContentEncryptionKey)
+	securityFilter := jwefilter.ByName("security_level", "access_control", "encryption_version", jwe.AlgorithmKey, jwe.ContentEncryptionKey)
 	securityHeaders, err := securityFilter.Filter(headers)
 	if err != nil {
 		fmt.Printf("Failed to filter security headers: %s\n", err)
@@ -53,7 +54,7 @@ func Example_jwe_filter_advanced() {
 	}
 
 	// Advanced Example 3: Operational Headers - Filter operational metadata
-	operationalFilter := jwe.NewHeaderNameFilter("environment", "region", "trace_id")
+	operationalFilter := jwefilter.ByName("environment", "region", "trace_id")
 	operationalHeaders, err := operationalFilter.Filter(headers)
 	if err != nil {
 		fmt.Printf("Failed to filter operational headers: %s\n", err)
@@ -66,7 +67,7 @@ func Example_jwe_filter_advanced() {
 	}
 
 	// Advanced Example 4: Public Headers - Remove sensitive headers for public APIs
-	sensitiveFilter := jwe.NewHeaderNameFilter("security_level", "access_control", "encryption_version", "trace_id")
+	sensitiveFilter := jwefilter.ByName("security_level", "access_control", "encryption_version", "trace_id")
 	publicHeaders, err := sensitiveFilter.Reject(headers)
 	if err != nil {
 		fmt.Printf("Failed to create public headers: %s\n", err)
@@ -79,7 +80,7 @@ func Example_jwe_filter_advanced() {
 	}
 
 	// Advanced Example 5: Minimal Headers - Keep only essential headers for bandwidth optimization
-	essentialFilter := jwe.NewHeaderNameFilter(jwe.AlgorithmKey, jwe.ContentEncryptionKey, jwe.KeyIDKey)
+	essentialFilter := jwefilter.ByName(jwe.AlgorithmKey, jwe.ContentEncryptionKey, jwe.KeyIDKey)
 	minimalHeaders, err := essentialFilter.Filter(headers)
 	if err != nil {
 		fmt.Printf("Failed to filter minimal headers: %s\n", err)
@@ -178,7 +179,7 @@ func createJWEEnvironmentHeaders(originalHeaders jwe.Headers, environment string
 	switch environment {
 	case "production":
 		// Production: Include security and service headers, exclude debug info
-		prodFilter := jwe.NewHeaderNameFilter(
+		prodFilter := jwefilter.ByName(
 			jwe.AlgorithmKey, jwe.ContentEncryptionKey, jwe.ContentTypeKey, jwe.KeyIDKey,
 			"security_level", "access_control", "service_name", "api_version", "environment", "region",
 		)
@@ -191,7 +192,7 @@ func createJWEEnvironmentHeaders(originalHeaders jwe.Headers, environment string
 
 	case "testing":
 		// Testing: Include debug headers, exclude some security headers
-		testFilter := jwe.NewHeaderNameFilter(
+		testFilter := jwefilter.ByName(
 			jwe.AlgorithmKey, jwe.ContentEncryptionKey, jwe.ContentTypeKey, jwe.KeyIDKey,
 			"service_name", "api_version", "request_id", "correlation_id", "trace_id", "environment",
 		)
@@ -204,7 +205,7 @@ func createJWEEnvironmentHeaders(originalHeaders jwe.Headers, environment string
 
 	default:
 		// Default: Use standard headers only
-		stdFilter := jwe.StandardHeadersFilter()
+		stdFilter := jwefilter.Standard()
 		filtered, err := stdFilter.Filter(originalHeaders)
 		if err != nil {
 			fmt.Printf("Failed to create default headers: %s\n", err)
