@@ -9,9 +9,10 @@ import (
 	// Importing asmbase64 for its side effects replaces jwx's default
 	// encoding/base64 implementation with github.com/segmentio/asm/base64,
 	// an assembly-optimized base64 codec. This is a global, one-time swap:
-	// the init() function calls jwx.SetBase64Encoder and jwx.SetBase64Decoder,
-	// so every subsequent jwx operation (JWK serialization, JWS compact
-	// encoding, JWT parsing, etc.) automatically uses the faster backend.
+	// the init() function calls jwx.Settings with jwx.WithBase64Encoder
+	// and jwx.WithBase64Decoder, so every subsequent jwx operation (JWK
+	// serialization, JWS compact encoding, JWT parsing, etc.) automatically
+	// uses the faster backend.
 	//
 	// No code changes are needed beyond this import — the jwx API is
 	// identical. This makes it safe to add or remove without touching
