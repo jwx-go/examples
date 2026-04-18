@@ -18,7 +18,7 @@ require (
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.0-alpha2
 	github.com/jwx-go/x448/v4 v4.0.0-alpha3.0.20260416134322-ef039b63c2dc
 	github.com/lestrrat-go/httprc/v3 v3.0.5
-	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260417092027-d39077dc4121
+	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418001848-fa368d81e127
 )
 
 require (

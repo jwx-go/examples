@@ -48,7 +48,7 @@ c4wOvhbalcX0FqTM3mXCgMFRbibquhwdxbU=
 	fmt.Fprint(f, src)
 	f.Close()
 
-	key, err := jwk.ParseFS(os.DirFS(filepath.Dir(f.Name())), filepath.Base(f.Name()), jwk.WithPEM(true))
+	key, err := jwk.ParseFS(os.DirFS(filepath.Dir(f.Name())), filepath.Base(f.Name()), jwk.WithX509(true))
 	if err != nil {
 		fmt.Printf("failed to parse key in PEM format: %s\n", err)
 		return
