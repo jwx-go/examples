@@ -9,8 +9,8 @@ github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1 h1:5RVFMOWjMyRy8cARdy79nAmgYw3h
 github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1/go.mod h1:ZXNYxsqcloTdSy/rNShjYzMhyjf0LaoftYK0p+A3h40=
 github.com/emmansun/gmsm v0.41.1 h1:mD1MqmaXTEqt+9UVmDpRYvcEMIa5vuslFEnw7IWp6/w=
 github.com/emmansun/gmsm v0.41.1/go.mod h1:FD1EQk4XcSMkahZFzNwFoI/uXzAlODB9JVsJ9G5N7Do=
-github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4 h1:yzfyT4OxkQOQB8/IQT+MdNqBUF7QOCdMopsVIpxNGTk=
-github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4/go.mod h1:Zfv1fQRjBt55nYMAfbYeqvuk0L5D8cBDp64JhnXYzrg=
+github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4.0.20260418083400-49db9ec8e127 h1:o47fiJvhc2cN63YhdttDBfqWZSXuGEe7aRtVOFdhtD8=
+github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4.0.20260418083400-49db9ec8e127/go.mod h1:uqPfXRztzX4+gu5HybrFPzcgom0Tzg/X/4LM7s3ZtYA=
 github.com/jwx-go/compsig/v4 v4.0.0-alpha1 h1:TrYQDosNowSnnArtwyJe9j4kCDaCo4VWYxdm2lhzEuw=
 github.com/jwx-go/compsig/v4 v4.0.0-alpha1/go.mod h1:8BXmvVuMMXjd2cn/8qVx6WsqOMUFyrR+3jBcKMmJeag=
 github.com/jwx-go/ed448/v4 v4.0.0-alpha4.0.20260416134430-9a949bdaf36e h1:KMDL7hiLYDz9vSBZPlDCBimJ3PZE4JueMVgvmXaDqrg=
@@ -41,8 +41,8 @@ github.com/lestrrat-go/httpcc v1.0.1 h1:ydWCStUeJLkpYyjLDHihupbn2tYmZ7m22BGkcvZZ
 github.com/lestrrat-go/httpcc v1.0.1/go.mod h1:qiltp3Mt56+55GPVCbTdM9MlqhvzyuL6W/NMDA8vA5E=
 github.com/lestrrat-go/httprc/v3 v3.0.5 h1:S+Mb4L2I+bM6JGTibLmxExhyTOqnXjqx+zi9MoXw/TM=
 github.com/lestrrat-go/httprc/v3 v3.0.5/go.mod h1:mSMtkZW92Z98M5YoNNztbRGxbXHql7tSitCvaxvo9l0=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418001848-fa368d81e127 h1:1OegW9HE0DAki7bINdfTh6qHDTrMQFOLl+ArRtB/Zxg=
-github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418001848-fa368d81e127/go.mod h1:F2a0rSyXsqLAL0orBZGOXrzQGv018Tx4eiEWWYR7Yzo=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418082023-34d0e7a04401 h1:AK2Uipj0Kvs5X9gCpqWLVyPCybsz+k9LAK5eWXkgCH8=
+github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418082023-34d0e7a04401/go.mod h1:F2a0rSyXsqLAL0orBZGOXrzQGv018Tx4eiEWWYR7Yzo=
 github.com/lestrrat-go/option/v2 v2.0.0 h1:XxrcaJESE1fokHy3FpaQ/cXW8ZsIdWcdFzzLOcID3Ss=
 github.com/lestrrat-go/option/v2 v2.0.0/go.mod h1:oSySsmzMoR0iRzCDCaUfsCzxQHUEuhOViQObyy7S6Vg=
 github.com/lestrrat-go/option/v3 v3.0.0-alpha1 h1:dvdzLwm/Ba5CJUF3jQP7w/iNYSLfy7yyh9XXNa1WjxI=
