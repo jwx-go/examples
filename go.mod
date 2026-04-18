@@ -7,18 +7,18 @@ require (
 	github.com/cloudflare/circl v1.6.3
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
 	github.com/emmansun/gmsm v0.41.1
-	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4.0.20260418083400-49db9ec8e127
-	github.com/jwx-go/compsig/v4 v4.0.0-alpha1
-	github.com/jwx-go/ed448/v4 v4.0.0-alpha4.0.20260416134430-9a949bdaf36e
-	github.com/jwx-go/es256k/v4 v4.0.0-alpha3
-	github.com/jwx-go/jwkfetch/v4 v4.0.0-alpha1
-	github.com/jwx-go/jwxfilter/v4 v4.0.0-20260417063039-928b8d22830e
-	github.com/jwx-go/mldsa/v4 v4.0.0-alpha3
-	github.com/jwx-go/mlkem/v4 v4.0.0-alpha1
-	github.com/jwx-go/reddy-pqchpke/v4 v4.0.0-alpha2
-	github.com/jwx-go/x448/v4 v4.0.0-alpha3.0.20260416134322-ef039b63c2dc
+	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4.0.20260418154321-fcb3401cc332
+	github.com/jwx-go/compsig/v4 v4.0.0-alpha1.0.20260418154820-22b0afa07b2b
+	github.com/jwx-go/ed448/v4 v4.0.0-alpha4.0.20260418154207-8f0c34fe58b3
+	github.com/jwx-go/es256k/v4 v4.0.0-alpha3.0.20260418154327-7d182d38d155
+	github.com/jwx-go/jwkfetch/v4 v4.0.0-alpha1.0.20260418154212-e026a2b4356c
+	github.com/jwx-go/jwxfilter/v4 v4.0.0-20260418154217-c776d2200073
+	github.com/jwx-go/mldsa/v4 v4.0.0-alpha3.0.20260418154336-fafeb603817c
+	github.com/jwx-go/mlkem/v4 v4.0.0-alpha1.0.20260418154341-ec8b71f7eb21
+	github.com/jwx-go/reddy-pqchpke/v4 v4.0.0-alpha2.0.20260418154257-2220ade37c77
+	github.com/jwx-go/x448/v4 v4.0.0-alpha3.0.20260418154347-40ab084fbed9
 	github.com/lestrrat-go/httprc/v3 v3.0.5
-	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418082023-34d0e7a04401
+	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.27
 )
 
 require (
