@@ -7,7 +7,7 @@ require (
 	github.com/cloudflare/circl v1.6.3
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
 	github.com/emmansun/gmsm v0.41.1
-	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4
+	github.com/jwx-go/asmbase64/v4 v4.0.0-alpha4.0.20260418083400-49db9ec8e127
 	github.com/jwx-go/compsig/v4 v4.0.0-alpha1
 	github.com/jwx-go/ed448/v4 v4.0.0-alpha4.0.20260416134430-9a949bdaf36e
 	github.com/jwx-go/es256k/v4 v4.0.0-alpha3
@@ -18,7 +18,7 @@ require (
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.0-alpha2
 	github.com/jwx-go/x448/v4 v4.0.0-alpha3.0.20260416134322-ef039b63c2dc
 	github.com/lestrrat-go/httprc/v3 v3.0.5
-	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418001848-fa368d81e127
+	github.com/lestrrat-go/jwx/v4 v4.0.0-scratch.26.0.20260418082023-34d0e7a04401
 )
 
 require (
