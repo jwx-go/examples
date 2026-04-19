@@ -1,6 +1,9 @@
 Changes
 =======
 
+v4.0.2 19 Apr 2026
+  * Bump jwx/v4 and all companion deps to v4.0.0 stable releases.
+
 v4.0.1 13 Apr 2026
   * Bump companion deps to latest alpha releases (asmbase64 v4.0.0-alpha3,
     es256k v4.0.0-alpha2, jwkcache v4.0.0-alpha2, mldsa v4.0.0-alpha2,
