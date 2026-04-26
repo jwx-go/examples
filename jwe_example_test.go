@@ -19,7 +19,11 @@ func exampleGenPayload() (*rsa.PrivateKey, []byte, error) {
 
 	payload := []byte("Lorem Ipsum")
 
-	encrypted, err := jwe.Encrypt(payload, jwe.WithKey(jwa.RSA1_5(), &privkey.PublicKey), jwe.WithContentEncryption(jwa.A128CBC_HS256()))
+	// Use RSA-OAEP for key wrapping and AES-256-GCM for content
+	// encryption. RSA1_5 (RSAES-PKCS1-v1_5) is also defined by RFC 7518
+	// but is exposed to Bleichenbacher-style padding-oracle attacks; new
+	// code should default to RSA-OAEP or RSA-OAEP-256.
+	encrypted, err := jwe.Encrypt(payload, jwe.WithKey(jwa.RSA_OAEP(), &privkey.PublicKey), jwe.WithContentEncryption(jwa.A256GCM()))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -33,7 +37,7 @@ func Example_jwe_decrypt() {
 		return
 	}
 
-	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA1_5(), privkey))
+	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP(), privkey))
 	if err != nil {
 		log.Printf("failed to decrypt: %s", err)
 		return
