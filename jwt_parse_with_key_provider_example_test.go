@@ -59,6 +59,18 @@ func Example_jwt_parse_with_key_provider_use_token() {
 		}
 
 		_, err = jws.Verify(signed, jws.WithKeyProvider(jws.KeyProviderFunc(func(_ context.Context, sink jws.KeySink, sig *jws.Signature, msg *jws.Message) error {
+			// `iss` came from `parsed`, which was produced by
+			// jwt.Parse(... jwt.WithVerify(false)). It is
+			// UNVERIFIED, caller-controlled input. The only safe
+			// way to use it here is as a lookup key against a
+			// closed allowlist of trusted issuers — exactly the
+			// switch below. Never use `iss` as a filesystem path,
+			// URL, cache key, or any other unbounded input: a
+			// malicious sender controls the string and will gladly
+			// inject `..`, NUL bytes, control characters, or
+			// anything else. The jws.Verify call this provider
+			// feeds into is what gates trust; before that, claims
+			// from `parsed` are just bytes off the wire.
 			iss, ok := parsed.Issuer()
 			if !ok {
 				return fmt.Errorf("no issuer found")
