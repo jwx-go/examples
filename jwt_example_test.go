@@ -81,8 +81,14 @@ func Example_jwt_parse_with_jwks() {
 				payload,
 				// Tell the parser that you want to use this keyset
 				jwt.WithKeySet(keyset,
-					// Tell the parser that you can trust this KeySet, and that
-					// you want to use the sole key in it
+					// WithUseDefault(true) makes the parser use the sole key
+					// in the set even when the JWS has no kid. Safe HERE
+					// because we constructed the keyset ourselves with
+					// exactly one known key. Do NOT lift this option to a
+					// remote JWKS path: as soon as the issuer rotates and
+					// publishes >1 keys, parses will start failing — or, if
+					// combined with WithInferAlgorithmFromKey, may pick the
+					// wrong key without any error signal.
 					jws.WithUseDefault(true),
 				),
 			)
@@ -260,7 +266,12 @@ func Example_jwt_openid_token() {
 	}
 	fmt.Printf("%s\n", buf)
 
-	t2, err := jwt.Parse(buf, jwt.WithToken(openid.New()), jwt.WithVerify(false), jwt.WithValidate(false))
+	// ParseInsecure is the right name for "parse without verifying" —
+	// it disables signature verification and claim validation in one
+	// call, and refuses key-bearing options so a typo can't silently
+	// skip verification. Production code reading a JWT from any
+	// source should use jwt.Parse with jwt.WithKey() / WithKeySet().
+	t2, err := jwt.ParseInsecure(buf, jwt.WithToken(openid.New()))
 	if err != nil {
 		fmt.Printf("failed to parse JSON: %s\n", err)
 		return

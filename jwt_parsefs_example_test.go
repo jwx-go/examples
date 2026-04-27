@@ -19,9 +19,16 @@ func Example_jwt_ParseFS() {
 	fmt.Fprint(f, exampleJWTSignedHMAC)
 	f.Close()
 
-	// Note: this JWT has NOT been verified because we have not passed jwt.WithKey() and used
-	// jwt.WithVerify(false). You need to pass jwt.WithKey() if you want the token to be parsed and
-	// verified in one go.
+	// This example calls ParseFS with both jwt.WithVerify(false) and
+	// jwt.WithValidate(false) only because there is no key context
+	// here — it demonstrates the FS-loading mechanics, nothing more.
+	// Production code reading a JWT from any source MUST pass
+	// jwt.WithKey() / jwt.WithKeySet() and MUST NOT disable
+	// jwt.WithValidate. The library exposes jwt.ParseInsecure for the
+	// inspect-without-verifying path when consuming raw bytes
+	// directly; ParseFS has no corresponding ParseFSInsecure today,
+	// so the two-option chant is the explicit way to express the
+	// same intent here.
 	tok, err := jwt.ParseFS(os.DirFS(filepath.Dir(f.Name())), filepath.Base(f.Name()), jwt.WithVerify(false), jwt.WithValidate(false))
 	if err != nil {
 		fmt.Printf("failed to read file %q: %s\n", f.Name(), err)

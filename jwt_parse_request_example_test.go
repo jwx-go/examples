@@ -49,6 +49,13 @@ func Example_jwt_parse_request_authorization() {
 	}
 
 	for _, tc := range testcases {
+		// jwt.WithVerify(false) + jwt.WithValidate(false) below is only
+		// because this example has no key context — it demonstrates
+		// where ParseRequest looks for a token, nothing more.
+		// Production code MUST pass jwt.WithKey() / jwt.WithKeySet()
+		// and MUST NOT disable jwt.WithValidate. (ParseRequest has no
+		// ParseRequestInsecure variant; jwt.ParseInsecure exists for
+		// the raw-bytes path when you genuinely just want to inspect.)
 		options := append(tc.options, []jwt.ParseOption{jwt.WithVerify(false), jwt.WithValidate(false)}...)
 		tok, err := jwt.ParseRequest(req, options...)
 		if err != nil {
