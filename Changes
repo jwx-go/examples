@@ -1,6 +1,11 @@
 Changes
 =======
 
+v4.0.3 28 Apr 2026
+  * Switch JWE examples from RSA1_5 to RSA-OAEP+A256GCM (RSA1_5 is deprecated).
+  * Various comment / usage clarifications across the example set; make
+    jwk_example runnable offline.
+
 v4.0.2 19 Apr 2026
   * Bump jwx/v4 and all companion deps to v4.0.0 stable releases.
 
