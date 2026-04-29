@@ -21,8 +21,8 @@ github.com/jwx-go/jwkfetch/v4 v4.0.0 h1:4KfcvGayGrDe76B9GESGA3pz7+mmOj/BSVdoPAHI
 github.com/jwx-go/jwkfetch/v4 v4.0.0/go.mod h1:LhkcZyO9TcdEOExV7Mejevggpk1KQw1HmcztR120BKA=
 github.com/jwx-go/jwxfilter/v4 v4.0.0 h1:uwtDxDQv7V6AUfNtfcLtGNEaVNAkREAKqGU3hlwXKdk=
 github.com/jwx-go/jwxfilter/v4 v4.0.0/go.mod h1:+S4xCEvJgwXHQbQQ0etEH1Dx4p/4+SlPQq20PpyAfzE=
-github.com/jwx-go/mldsa/v4 v4.0.0 h1:ElwUv8jv3mO3U/jVlppQ03WgIDAdqOEv3ccXk3yi6bA=
-github.com/jwx-go/mldsa/v4 v4.0.0/go.mod h1:r2kre6rXlfrdWMqvm7eH5AQIWFQoSROoOQdvPqGD5HA=
+github.com/jwx-go/mldsa/v4 v4.0.1 h1:gk8X9zZ5XgzfaMgD6kjv75wUtOoYW37flJZ6ZwumnUM=
+github.com/jwx-go/mldsa/v4 v4.0.1/go.mod h1:r2kre6rXlfrdWMqvm7eH5AQIWFQoSROoOQdvPqGD5HA=
 github.com/jwx-go/mlkem/v4 v4.0.0 h1:1O1vQ3sIPc68YjKGF4mhd+p4hj4TYADCMZu3Lx97azk=
 github.com/jwx-go/mlkem/v4 v4.0.0/go.mod h1:qjIqzAvmVvuzmfw8ykub/LmbfTtix33+QqYzu4JIhBM=
 github.com/jwx-go/reddy-pqchpke/v4 v4.0.0 h1:fwC+Wk9FZdOwJrhGC9udtyDPJkZ7Vrw4YzCtEhW9vvA=
