@@ -62,9 +62,9 @@ func Example_jwkbb_x509_custom_decoder_and_encoder() {
 	// this, jwk.ParseKey would successfully invoke our decoder but then
 	// fail to wrap the raw *MyKey in a jwk.Key. A real extension ships
 	// its own importer alongside the X509 registration.
-	if err := jwk.RegisterKeyImporter(func(k *MyKey) (jwk.Key, error) {
+	if err := jwk.RegisterKeyImporter(jwk.KeyImportFunc[*MyKey](func(k *MyKey) (jwk.Key, error) {
 		return jwk.Import[jwk.Key](k.Priv)
-	}); err != nil {
+	})); err != nil {
 		fmt.Printf("failed to register importer: %s\n", err)
 		return
 	}

@@ -67,7 +67,7 @@ func init() {
 
 	// We only need one converter for the private key, because the public key
 	// is exactly the same type as *ecdsa.PublicKey
-	panicOnRegistrationError(jwk.RegisterKeyImporter(convertShangMiSm2))
+	panicOnRegistrationError(jwk.RegisterKeyImporter(jwk.KeyImportFunc[*sm2.PrivateKey](convertShangMiSm2)))
 
 	panicOnRegistrationError(jwk.RegisterKeyExporter(jwk.KeyKind(jwa.EC().String()), jwk.KeyExportFunc(convertJWKToShangMiSm2)))
 }
