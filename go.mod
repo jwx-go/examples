@@ -12,7 +12,7 @@ require (
 	github.com/jwx-go/ed448/v4 v4.0.2-0.20260503064226-7a2d4df70006
 	github.com/jwx-go/es256k/v4 v4.0.0
 	github.com/jwx-go/jwkfetch/v4 v4.0.0
-	github.com/jwx-go/jwxfilter/v4 v4.0.0
+	github.com/jwx-go/jwxfilter/v4 v4.0.1
 	github.com/jwx-go/mldsa/v4 v4.0.2-0.20260503064555-64748715dea6
 	github.com/jwx-go/mlkem/v4 v4.0.2-0.20260503064612-19787b89225e
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.1-0.20260503064646-bb05269cefa7
