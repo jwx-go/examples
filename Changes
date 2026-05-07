@@ -1,6 +1,12 @@
 Changes
 =======
 
+v4.0.5 7 May 2026
+  * Bump every `github.com/jwx-go/*` companion dependency to the
+    latest release: asmbase64 v4.0.1; compsig v4.0.2; ed448 v4.0.2;
+    es256k v4.0.2; jwkfetch v4.0.2; jwxfilter v4.0.2; mldsa v4.0.2;
+    mlkem v4.0.2; reddy-pqchpke v4.0.1; x448 v4.0.2.
+
 v4.0.4 7 May 2026
   * Fix `jwe_filter_basic_example_test.go` (and the parallel
     `_advanced` variant): `jwa.A256GCM` was passed to `Headers.Set`
