@@ -16,7 +16,7 @@ func Example_jwe_filter_basic() {
 	// and application-specific custom fields.
 	protectedHeaders := jwe.NewHeaders()
 	protectedHeaders.Set(jwe.AlgorithmKey, jwa.RSA_OAEP_256())
-	protectedHeaders.Set(jwe.ContentEncryptionKey, jwa.A256GCM)
+	protectedHeaders.Set(jwe.ContentEncryptionKey, jwa.A256GCM())
 	protectedHeaders.Set(jwe.ContentTypeKey, "application/json")
 	protectedHeaders.Set(jwe.KeyIDKey, "example-key-1")
 	protectedHeaders.Set("custom-header", "custom-value")
