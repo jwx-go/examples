@@ -19,11 +19,14 @@ func exampleGenPayload() (*rsa.PrivateKey, []byte, error) {
 
 	payload := []byte("Lorem Ipsum")
 
-	// Use RSA-OAEP for key wrapping and AES-256-GCM for content
-	// encryption. RSA1_5 (RSAES-PKCS1-v1_5) is also defined by RFC 7518
-	// but is exposed to Bleichenbacher-style padding-oracle attacks; new
-	// code should default to RSA-OAEP or RSA-OAEP-256.
-	encrypted, err := jwe.Encrypt(payload, jwe.WithKey(jwa.RSA_OAEP(), &privkey.PublicKey), jwe.WithContentEncryption(jwa.A256GCM()))
+	// Use RSA-OAEP-256 for key wrapping and AES-256-GCM for content
+	// encryption. New code should default to RSA-OAEP-256: RSA-OAEP
+	// (without the suffix) is OAEP with SHA-1 per RFC 7518, retained
+	// for interop with older peers but not preferred for new
+	// deployments. RSA1_5 (RSAES-PKCS1-v1_5) is also defined by RFC
+	// 7518 but is exposed to Bleichenbacher-style padding-oracle
+	// attacks and should not be used for new code.
+	encrypted, err := jwe.Encrypt(payload, jwe.WithKey(jwa.RSA_OAEP_256(), &privkey.PublicKey), jwe.WithContentEncryption(jwa.A256GCM()))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -37,7 +40,7 @@ func Example_jwe_decrypt() {
 		return
 	}
 
-	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP(), privkey))
+	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP_256(), privkey))
 	if err != nil {
 		log.Printf("failed to decrypt: %s", err)
 		return
@@ -71,7 +74,7 @@ func Example_jwe_complex_decrypt() {
 	protected.Set(`jwx-hints`, `foobar`) // in real life this would a more meaningful value
 	encrypted, err := jwe.Encrypt(
 		[]byte(payload),
-		jwe.WithKey(jwa.RSA_OAEP(), privkey.PublicKey),
+		jwe.WithKey(jwa.RSA_OAEP_256(), privkey.PublicKey),
 		jwe.WithProtectedHeaders(protected),
 	)
 	if err != nil {
@@ -97,7 +100,7 @@ func Example_jwe_complex_decrypt() {
 				// You may opt to set both the algorithm and key here as well.
 				// BUT BE CAREFUL so that you don't accidentally create a
 				// vulnerability
-				sink.Key(jwa.RSA_OAEP(), privkey)
+				sink.Key(jwa.RSA_OAEP_256(), privkey)
 				return nil
 			}
 		}
