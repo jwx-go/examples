@@ -14,7 +14,7 @@ func Example_jwe_filter_advanced() {
 	// Create JWE headers with comprehensive metadata including security and service information
 	protectedHeaders := jwe.NewHeaders()
 	protectedHeaders.Set(jwe.AlgorithmKey, jwa.RSA_OAEP_256())
-	protectedHeaders.Set(jwe.ContentEncryptionKey, jwa.A256GCM)
+	protectedHeaders.Set(jwe.ContentEncryptionKey, jwa.A256GCM())
 	protectedHeaders.Set(jwe.ContentTypeKey, "application/json")
 	protectedHeaders.Set(jwe.KeyIDKey, "service-key-001")
 
