@@ -21,7 +21,7 @@ func Example_jwe_encrypt_with_headers() {
 
 	hdrs := jwe.NewHeaders()
 	hdrs.Set(`x-example`, true)
-	encrypted, err := jwe.Encrypt([]byte(payload), jwe.WithKey(jwa.RSA_OAEP(), privkey.PublicKey, jwe.WithPerRecipientHeaders(hdrs)))
+	encrypted, err := jwe.Encrypt([]byte(payload), jwe.WithKey(jwa.RSA_OAEP_256(), privkey.PublicKey, jwe.WithPerRecipientHeaders(hdrs)))
 	if err != nil {
 		fmt.Printf("failed to encrypt payload: %s\n", err)
 		return
@@ -46,5 +46,5 @@ func Example_jwe_encrypt_with_headers() {
 	json.NewEncoder(os.Stdout).Encode(msg.ProtectedHeaders())
 
 	// OUTPUT:
-	// {"alg":"RSA-OAEP","enc":"A256GCM","x-example":true}
+	// {"alg":"RSA-OAEP-256","enc":"A256GCM","x-example":true}
 }

@@ -32,14 +32,14 @@ func Example_jwe_encrypt_json() {
 	encrypted, err := jwe.Encrypt(
 		[]byte(payload),
 		jwe.WithJSON(),                      // Toggle JSON serialization. Because there's only one key (recipient), this will produce Flattened JSON serialization
-		jwe.WithKey(jwa.RSA_OAEP(), pubkey), // Public key for encryption
+		jwe.WithKey(jwa.RSA_OAEP_256(), pubkey), // Public key for encryption
 	)
 	if err != nil {
 		fmt.Printf("failed to encrypt payload: %s\n", err)
 		return
 	}
 
-	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP(), privkey))
+	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP_256(), privkey))
 	if err != nil {
 		fmt.Printf("failed to decrypt payload: %s\n", err)
 		return
@@ -76,7 +76,7 @@ func Example_jwe_encrypt_json_multi() {
 
 	options := []jwe.EncryptOption{jwe.WithJSON()}
 	for _, key := range pubkeys {
-		options = append(options, jwe.WithKey(jwa.RSA_OAEP(), key))
+		options = append(options, jwe.WithKey(jwa.RSA_OAEP_256(), key))
 	}
 
 	const payload = `Lorem ipsum`
@@ -87,7 +87,7 @@ func Example_jwe_encrypt_json_multi() {
 	}
 
 	for _, key := range privkeys {
-		decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP(), key))
+		decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP_256(), key))
 		if err != nil {
 			fmt.Printf("failed to decrypt payload: %s\n", err)
 			return

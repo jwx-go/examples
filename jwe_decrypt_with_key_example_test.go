@@ -9,13 +9,13 @@ import (
 
 func Example_jwe_verify_with_key() {
 	const payload = "Lorem ipsum"
-	encrypted, err := jwe.Encrypt([]byte(payload), jwe.WithKey(jwa.RSA_OAEP(), jwkRSAPublicKey))
+	encrypted, err := jwe.Encrypt([]byte(payload), jwe.WithKey(jwa.RSA_OAEP_256(), jwkRSAPublicKey))
 	if err != nil {
 		fmt.Printf("failed to sign payload: %s\n", err)
 		return
 	}
 
-	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP(), jwkRSAPrivateKey))
+	decrypted, err := jwe.Decrypt(encrypted, jwe.WithKey(jwa.RSA_OAEP_256(), jwkRSAPrivateKey))
 	if err != nil {
 		fmt.Printf("failed to sign payload: %s\n", err)
 		return
