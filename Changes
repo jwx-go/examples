@@ -1,6 +1,15 @@
 Changes
 =======
 
+v4.0.4 7 May 2026
+  * Fix `jwe_filter_basic_example_test.go` (and the parallel
+    `_advanced` variant): `jwa.A256GCM` was passed to `Headers.Set`
+    as a function value rather than its return value, silently
+    dropping the `enc` header.
+  * Default JWE examples to `RSA-OAEP-256`. Plain `RSA-OAEP` is
+    OAEP with SHA-1 per RFC 7518 and is retained for legacy
+    interop only; new code should use `RSA-OAEP-256`.
+
 v4.0.3 28 Apr 2026
   * Switch JWE examples from RSA1_5 to RSA-OAEP+A256GCM (RSA1_5 is deprecated).
   * Various comment / usage clarifications across the example set; make
