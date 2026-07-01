@@ -10,6 +10,16 @@ import (
 	"github.com/lestrrat-go/jwx/v4/jwk"
 )
 
+// Compliance framework keys used in the per-key "compliance" metadata maps
+// below. They are declared as constants so the same framework name is spelled
+// consistently across the production, development, and staging keys.
+const (
+	compliancePCIDSS = "pci-dss"
+	complianceSOX    = "sox"
+	complianceGDPR   = "gdpr"
+	complianceHIPAA  = "hipaa"
+)
+
 func Example_jwk_filter_advanced_use_cases() {
 	// Create multiple keys with different security classifications
 
@@ -36,10 +46,10 @@ func Example_jwk_filter_advanced_use_cases() {
 	prodJWK.Set("purpose", "payment-processing")
 	prodJWK.Set("dataTypes", []string{"pii", "financial", "authentication"})
 	prodJWK.Set("compliance", map[string]any{
-		"pci-dss": "level-1",
-		"sox":     true,
-		"gdpr":    true,
-		"hipaa":   false,
+		compliancePCIDSS: "level-1",
+		complianceSOX:    true,
+		complianceGDPR:   true,
+		complianceHIPAA:  false,
 	})
 	prodJWK.Set("auditRequired", true)
 	prodJWK.Set("backupLocation", "hsm-cluster-primary")
@@ -68,10 +78,10 @@ func Example_jwk_filter_advanced_use_cases() {
 	devJWK.Set("purpose", "testing")
 	devJWK.Set("dataTypes", []string{"test-data", "mock-data"})
 	devJWK.Set("compliance", map[string]any{
-		"pci-dss": "not-applicable",
-		"sox":     false,
-		"gdpr":    false,
-		"hipaa":   false,
+		compliancePCIDSS: "not-applicable",
+		complianceSOX:    false,
+		complianceGDPR:   false,
+		complianceHIPAA:  false,
 	})
 	devJWK.Set("auditRequired", false)
 	devJWK.Set("backupLocation", "local-storage")
@@ -100,10 +110,10 @@ func Example_jwk_filter_advanced_use_cases() {
 	stagingJWK.Set("purpose", "integration-testing")
 	stagingJWK.Set("dataTypes", []string{"sanitized-production-data"})
 	stagingJWK.Set("compliance", map[string]any{
-		"pci-dss": "level-3",
-		"sox":     true,
-		"gdpr":    true,
-		"hipaa":   false,
+		compliancePCIDSS: "level-3",
+		complianceSOX:    true,
+		complianceGDPR:   true,
+		complianceHIPAA:  false,
 	})
 	stagingJWK.Set("auditRequired", true)
 	stagingJWK.Set("backupLocation", "cloud-backup-encrypted")
