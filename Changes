@@ -1,6 +1,9 @@
 Changes
 =======
 
+v4.0.6 1 July 2026
+  * Bump `github.com/lestrrat-go/jwx/v4` to v4.1.0.
+
 v4.0.5 7 May 2026
   * Bump every `github.com/jwx-go/*` companion dependency to the
     latest release: asmbase64 v4.0.1; compsig v4.0.2; ed448 v4.0.2;
