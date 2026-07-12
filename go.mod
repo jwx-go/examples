@@ -6,7 +6,7 @@ require (
 	filippo.io/mldsa v0.0.0-20260215214346-43d0283efc3e
 	github.com/cloudflare/circl v1.6.4
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
-	github.com/emmansun/gmsm v0.43.0
+	github.com/emmansun/gmsm v0.44.0
 	github.com/jwx-go/asmbase64/v4 v4.0.1
 	github.com/jwx-go/compsig/v4 v4.0.2
 	github.com/jwx-go/ed448/v4 v4.0.2
