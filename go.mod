@@ -9,7 +9,7 @@ require (
 	github.com/emmansun/gmsm v0.44.0
 	github.com/jwx-go/asmbase64/v4 v4.0.1
 	github.com/jwx-go/compsig/v4 v4.0.3
-	github.com/jwx-go/ed448/v4 v4.0.2
+	github.com/jwx-go/ed448/v4 v4.0.3
 	github.com/jwx-go/es256k/v4 v4.0.3
 	github.com/jwx-go/jwkfetch/v4 v4.0.2
 	github.com/jwx-go/jwxfilter/v4 v4.0.3

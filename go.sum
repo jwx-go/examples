@@ -13,8 +13,8 @@ github.com/jwx-go/asmbase64/v4 v4.0.1 h1:5I7V0eRM/uMN+3/7WCKBk9NTykm2bK0jqhCyatC
 github.com/jwx-go/asmbase64/v4 v4.0.1/go.mod h1:IPYsZ/zw4JT2xLooS+jDttLvPQW2527swO/THGerlkE=
 github.com/jwx-go/compsig/v4 v4.0.3 h1:2ZwDn6Vxeu0dr8Hovjhnq5AsbvKC5OsxO+fnunjtWQU=
 github.com/jwx-go/compsig/v4 v4.0.3/go.mod h1:1WhzybOWRJJ09zPS7LElL9AxCu9vCuMn/W3kql5oLDc=
-github.com/jwx-go/ed448/v4 v4.0.2 h1:rgr5ayHBAfEXrElHIP5XTeIZrBmFnLyV+dlMe7wABVU=
-github.com/jwx-go/ed448/v4 v4.0.2/go.mod h1:F2cpc4sDTw1RZdv9Vt8hxVSRYUfgFIT+OIkheCiClLY=
+github.com/jwx-go/ed448/v4 v4.0.3 h1:UlETPRd6yFjbSkGZn9bIK9bRpOySNzka5ZnVBxVM02w=
+github.com/jwx-go/ed448/v4 v4.0.3/go.mod h1:Qp4xWZ30Ar7YVNjO/0zAX+5FyEeg2edI1xFBO2sXXBg=
 github.com/jwx-go/es256k/v4 v4.0.3 h1:hKd0MK/q6Yr9sbsQYdrkPZl7uvGA+X8tUe17iSNmCWs=
 github.com/jwx-go/es256k/v4 v4.0.3/go.mod h1:brl045ZXD+zDXB5OkcoC3X/7YFHVLgD2f60pSLSvdTs=
 github.com/jwx-go/jwkfetch/v4 v4.0.2 h1:1LmbKiHcIYW73UVzu2mHiZ+puUyr78AYtBea4BRDQVU=
