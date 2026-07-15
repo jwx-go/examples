@@ -25,8 +25,8 @@ github.com/jwx-go/mldsa/v4 v4.0.3 h1:HRRxzu9+7KN609eln8G2EjhwjmQ3bVPLAT3XuKdlpzc
 github.com/jwx-go/mldsa/v4 v4.0.3/go.mod h1:KTKIAYdN6gtI33tl87Z9cAp3ABl5iHttd/DPGf158dE=
 github.com/jwx-go/mlkem/v4 v4.0.2 h1:3f8Lu5XkNWurosF1vUT2iZdjYimtw3vnWeLvCfnkoEg=
 github.com/jwx-go/mlkem/v4 v4.0.2/go.mod h1:TnY3Esld31CwjlOmxZh2KXiRF0+DtJtKukNvPHTXzyM=
-github.com/jwx-go/reddy-pqchpke/v4 v4.0.1 h1:GeYfVldsszbe2wIjAkTIIW0mjWlBQRVYzR8qkfQ5b5Y=
-github.com/jwx-go/reddy-pqchpke/v4 v4.0.1/go.mod h1:J5LDqdD35E7OjT3XHHQm8A573p3dpGAjzKQOHrkKvkI=
+github.com/jwx-go/reddy-pqchpke/v4 v4.0.2 h1:4py933zdbEfIp3VIiv+qOADmBz6/DZMXPQHZQsC4bb0=
+github.com/jwx-go/reddy-pqchpke/v4 v4.0.2/go.mod h1:GTFR3sDP/p9vTASRszxHS1+M2KXQNGSN5SsEm4LZPUs=
 github.com/jwx-go/x448/v4 v4.0.2 h1:7gC68JVJVcOR+LOoVg3v79imDVu1HJYpfAa6WNFctto=
 github.com/jwx-go/x448/v4 v4.0.2/go.mod h1:aTX5JnkSVmL5eQG9dlCdJq/fC9UzPNDvnf1stYAKoMI=
 github.com/lestrrat-go/blackmagic v1.0.4 h1:IwQibdnf8l2KoO+qC3uT4OaTWsW7tuRQXy9TRN9QanA=
