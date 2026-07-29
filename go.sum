@@ -9,8 +9,8 @@ github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1 h1:5RVFMOWjMyRy8cARdy79nAmgYw3h
 github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1/go.mod h1:ZXNYxsqcloTdSy/rNShjYzMhyjf0LaoftYK0p+A3h40=
 github.com/emmansun/gmsm v0.44.0 h1:QAg/Xuha84+AUPFIe7T8Ly4S8z54+UPwpBnHS8Y8Ubc=
 github.com/emmansun/gmsm v0.44.0/go.mod h1:CHti5ihGbTOI0pCtdoC8HLjBxGFktH/ksbpsCgsCzkQ=
-github.com/jwx-go/asmbase64/v4 v4.0.2 h1:4BROHk+WwsNo0Ma6fW/JoLKDpQosMNa72XKL/Tizemo=
-github.com/jwx-go/asmbase64/v4 v4.0.2/go.mod h1:soFblWg+VBeJQw4iwSjAJefkRjF7nYT9GqG/RedRAH8=
+github.com/jwx-go/asmbase64/v4 v4.0.3 h1:RRQDvI5iOLzsjsT2Y+31Xt3Y5hSPf0GjT1MmeDtnsrE=
+github.com/jwx-go/asmbase64/v4 v4.0.3/go.mod h1:3KAEn9Tae/5/QJ9oaTWYW0RNhHjXBnOSAVfzcqK+5LY=
 github.com/jwx-go/compsig/v4 v4.0.3 h1:2ZwDn6Vxeu0dr8Hovjhnq5AsbvKC5OsxO+fnunjtWQU=
 github.com/jwx-go/compsig/v4 v4.0.3/go.mod h1:1WhzybOWRJJ09zPS7LElL9AxCu9vCuMn/W3kql5oLDc=
 github.com/jwx-go/ed448/v4 v4.0.3 h1:UlETPRd6yFjbSkGZn9bIK9bRpOySNzka5ZnVBxVM02w=
