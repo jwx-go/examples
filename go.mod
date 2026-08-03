@@ -14,7 +14,7 @@ require (
 	github.com/jwx-go/jwkfetch/v4 v4.0.4
 	github.com/jwx-go/jwxfilter/v4 v4.0.3
 	github.com/jwx-go/mldsa/v4 v4.0.3
-	github.com/jwx-go/mlkem/v4 v4.0.3
+	github.com/jwx-go/mlkem/v4 v4.0.4
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.2
 	github.com/jwx-go/x448/v4 v4.0.3
 	github.com/lestrrat-go/httprc/v3 v3.0.6
