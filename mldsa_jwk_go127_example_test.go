@@ -1,11 +1,13 @@
+//go:build go1.27
+
 package examples_test
 
 import (
+	"crypto/mldsa"
 	"encoding/json"
 	"fmt"
 
-	"filippo.io/mldsa"
-	jwxmldsa "github.com/jwx-go/mldsa/v4"
+	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 	"github.com/lestrrat-go/jwx/v4/jws"
 )
@@ -17,16 +19,14 @@ func Example_mldsa_jwk() {
 	// does not determine the algorithm — the parameter set (ML-DSA-44/65/87)
 	// must be specified explicitly.
 
-	// Generate a raw ML-DSA-44 key pair using the filippo.io/mldsa package.
+	// Generate a raw ML-DSA-44 key pair.
 	sk, err := mldsa.GenerateKey(mldsa.MLDSA44())
 	if err != nil {
 		fmt.Printf("failed to generate ML-DSA key: %s\n", err)
 		return
 	}
 
-	// jwk.Import converts the raw *mldsa.PrivateKey into a jwk.Key.
-	// The mldsa package registers a key importer during init(), so jwx
-	// knows how to handle *mldsa.PrivateKey without any extra setup.
+	// jwk.Import converts the raw *crypto/mldsa.PrivateKey into a jwk.Key.
 	// The resulting JWK will have kty="AKP", alg="ML-DSA-44", and both
 	// "pub" and "priv" fields populated.
 	privJWK, err := jwk.Import[jwk.Key](sk)
@@ -53,9 +53,8 @@ func Example_mldsa_jwk() {
 		return
 	}
 
-	// Parse back from JSON. Because the mldsa package registered the ML-DSA
-	// signature algorithms at init time, jwk.ParseKey can resolve "ML-DSA-44"
-	// in the "alg" field and reconstruct the key correctly.
+	// Parse back from JSON. jwk.ParseKey resolves "ML-DSA-44" in the "alg"
+	// field and reconstructs the key correctly.
 	parsed, err := jwk.ParseKey(serialized)
 	if err != nil {
 		fmt.Printf("failed to parse JWK: %s\n", err)
@@ -66,7 +65,7 @@ func Example_mldsa_jwk() {
 	// just like the original. This demonstrates that JWK serialization
 	// round-trips correctly for ML-DSA keys.
 	payload := []byte("round-trip test")
-	signed, err := jws.Sign(payload, jws.WithKey(jwxmldsa.MLDSA44(), parsed))
+	signed, err := jws.Sign(payload, jws.WithKey(jwa.MLDSA44(), parsed))
 	if err != nil {
 		fmt.Printf("failed to sign with parsed JWK: %s\n", err)
 		return
@@ -80,7 +79,7 @@ func Example_mldsa_jwk() {
 		return
 	}
 
-	verified, err := jws.Verify(signed, jws.WithKey(jwxmldsa.MLDSA44(), pubJWK))
+	verified, err := jws.Verify(signed, jws.WithKey(jwa.MLDSA44(), pubJWK))
 	if err != nil {
 		fmt.Printf("failed to verify with public JWK: %s\n", err)
 		return

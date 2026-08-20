@@ -7,6 +7,19 @@
 - Exception: a representative/overview example for a package → `<pkg>_example_test.go`. e.g., `jws_example_test.go`, `jwk_example_test.go`.
 - Function naming: `Example_<topic>_<action>()` — matches file name without `_example_test.go`. e.g., `Example_jws_sign()`, `Example_mldsa_sign_verify()`.
 
+### Examples whose behavior depends on the Go version
+
+When the canonical way to do something differs between toolchains, ship one file per toolchain instead of hedging inside a single example:
+
+- `<topic>_<action>_go127_example_test.go` with `//go:build go1.27`.
+- `<topic>_<action>_pre_go127_example_test.go` with `//go:build !go1.27`.
+
+Both keep the **same** `Example_<topic>_<action>()` name; the build tags make them exclusive, so godoc shows one per toolchain.
+
+The two files MUST mirror each other line for line, differing only where the toolchain forces it. A reader diffs the pair to learn what actually changed, so any other drift in wording is a defect.
+
+When two packages share a name, prose MUST qualify every type and function with its import path: write `*crypto/mldsa.PrivateKey` or `*filippo.io/mldsa.PrivateKey`, never a bare `*mldsa.PrivateKey`. Code keeps the short form the import gives it, so the comments are the only place a reader can tell the two apart. ML-DSA is the current instance: `crypto/mldsa` from Go 1.27, `filippo.io/mldsa` plus `github.com/jwx-go/mldsa/v4` before that.
+
 ## Comments
 
 Examples serve as end-user documentation. Every example function MUST have ample inline comments that:
