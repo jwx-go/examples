@@ -31,20 +31,12 @@ func Example_mldsa_export() {
 		return
 	}
 
-	// Export back to a raw key. jwk.Export[any] lets the registered exporter
-	// choose the most appropriate concrete type. For AKP keys with an ML-DSA
-	// algorithm, the mldsa package's exporter returns *mldsa.PrivateKey.
-	// The exporter reconstructs the key from the stored seed ("priv" field)
-	// and verifies that the derived public key matches the "pub" field.
-	exported, err := jwk.Export[any](privJWK)
+	// Export back to a raw key, naming the type you want. The exporter
+	// reconstructs the key from the stored seed ("priv" field) and verifies
+	// that the derived public key matches the "pub" field.
+	exportedSK, err := jwk.Export[*mldsa.PrivateKey](privJWK)
 	if err != nil {
 		fmt.Printf("failed to export key: %s\n", err)
-		return
-	}
-
-	exportedSK, ok := exported.(*mldsa.PrivateKey)
-	if !ok {
-		fmt.Printf("unexpected key type: %T\n", exported)
 		return
 	}
 
