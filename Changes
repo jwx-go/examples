@@ -1,6 +1,14 @@
 Changes
 =======
 
+v4.0.8 20 August 2026
+  * Add an example for parsing a JWK Set that contains a key the build does
+    not understand, covering `jwk.IsUnsupportedKey` and
+    `jwk.WithStrictKeySetParsing`.
+  * Bump `github.com/lestrrat-go/jwx/v4` to v4.4.0, which implements ML-DSA
+    natively on Go 1.27, and bump companion dependencies to their latest
+    releases.
+
 v4.0.7 24 July 2026
   * Bump `github.com/lestrrat-go/jwx/v4` to v4.2.0.
   * Bump companion dependencies to their latest patch releases.

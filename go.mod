@@ -8,17 +8,17 @@ require (
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
 	github.com/emmansun/gmsm v0.44.1
 	github.com/jwx-go/asmbase64/v4 v4.0.3
-	github.com/jwx-go/compsig/v4 v4.0.5-0.20260820073004-55f11345aa24
+	github.com/jwx-go/compsig/v4 v4.0.5
 	github.com/jwx-go/ed448/v4 v4.0.4
 	github.com/jwx-go/es256k/v4 v4.0.4
 	github.com/jwx-go/jwkfetch/v4 v4.0.4
 	github.com/jwx-go/jwxfilter/v4 v4.0.4
-	github.com/jwx-go/mldsa/v4 v4.0.5-0.20260820072537-6eff5988fb79
+	github.com/jwx-go/mldsa/v4 v4.0.5
 	github.com/jwx-go/mlkem/v4 v4.0.4
 	github.com/jwx-go/reddy-pqchpke/v4 v4.0.3
 	github.com/jwx-go/x448/v4 v4.0.4
 	github.com/lestrrat-go/httprc/v3 v3.0.6
-	github.com/lestrrat-go/jwx/v4 v4.3.1-0.20260820031344-741ca1c0cfb9
+	github.com/lestrrat-go/jwx/v4 v4.4.0
 )
 
 require (
