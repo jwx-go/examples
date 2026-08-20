@@ -1,17 +1,19 @@
+//go:build go1.27
+
 package examples_test
 
 import (
+	"crypto/mldsa"
 	"fmt"
 
-	"filippo.io/mldsa"
 	"github.com/lestrrat-go/jwx/v4/jwa"
 	"github.com/lestrrat-go/jwx/v4/jwk"
 )
 
 func Example_mldsa_export() {
 	// jwk.Export converts a jwk.Key back to a raw key type. For ML-DSA keys,
-	// this returns *mldsa.PrivateKey or *mldsa.PublicKey depending on whether
-	// the JWK contains the "priv" field.
+	// this returns *crypto/mldsa.PrivateKey or *crypto/mldsa.PublicKey,
+	// depending on whether the JWK contains the "priv" field.
 	//
 	// This is useful when you receive an ML-DSA key in JWK format (e.g., from
 	// a JWKS endpoint or configuration file) and need the raw key for operations
@@ -32,10 +34,10 @@ func Example_mldsa_export() {
 	}
 
 	// Export back to a raw key. jwk.Export[any] lets the registered exporter
-	// choose the most appropriate concrete type. For AKP keys with an ML-DSA
-	// algorithm, the mldsa package's exporter returns *mldsa.PrivateKey.
-	// The exporter reconstructs the key from the stored seed ("priv" field)
-	// and verifies that the derived public key matches the "pub" field.
+	// choose the concrete type, which for an AKP key with an ML-DSA algorithm
+	// is *crypto/mldsa.PrivateKey. The exporter reconstructs the key from
+	// the stored seed ("priv" field) and verifies that the derived public key
+	// matches the "pub" field.
 	exported, err := jwk.Export[any](privJWK)
 	if err != nil {
 		fmt.Printf("failed to export key: %s\n", err)
