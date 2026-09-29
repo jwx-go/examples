@@ -21,7 +21,7 @@ func Example_mldsa_sign_verify() {
 	//   - ML-DSA-65 (NIST Level 3, balanced)
 	//   - ML-DSA-87 (NIST Level 5, highest security)
 	// Each parameter set determines the key and signature sizes.
-	// GenerateKey takes a *filippo.io/mldsa.Parameters to select the variant.
+	// GenerateKey takes a filippo.io/mldsa.Parameters to select the variant.
 	sk, err := mldsa.GenerateKey(mldsa.MLDSA65())
 	if err != nil {
 		fmt.Printf("failed to generate ML-DSA key: %s\n", err)
