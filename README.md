@@ -43,7 +43,7 @@ The topical index below lists every example file by purpose. Filenames follow `<
 ### Signing / serialization
 - [Sign with custom base64](./jwt_sign_with_custom_base64_example_test.go) — swap the base64 backend per call
 - [Serialize as JWS](./jwt_serialize_jws_example_test.go) — sign and emit a compact JWS-wrapped JWT
-- [Serialize as nested JWE+JWS](./jwt_serialize_jwe_jws_example_test.go) — sign then encrypt
+- [Serialize as nested JWE+JWS](./jwt_serialize_jwe_jws_example_test.go) — encrypt, then sign the encrypted payload
 - [Serialize as JSON](./jwt_serialize_json_example_test.go) — raw JSON form (no signature)
 - [Flatten `aud`](./jwt_flatten_audience_example_test.go) — single-string vs. array form
 
