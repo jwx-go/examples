@@ -6,7 +6,7 @@ require (
 	filippo.io/mldsa v1.0.0
 	github.com/cloudflare/circl v1.6.5
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1
-	github.com/emmansun/gmsm v0.44.1
+	github.com/emmansun/gmsm v0.45.0
 	github.com/jwx-go/asmbase64/v4 v4.0.3
 	github.com/jwx-go/compsig/v4 v4.0.6
 	github.com/jwx-go/ed448/v4 v4.0.5
@@ -31,6 +31,6 @@ require (
 	github.com/lestrrat-go/option/v3 v3.0.0-alpha1 // indirect
 	github.com/segmentio/asm v1.2.1 // indirect
 	github.com/valyala/fastjson v1.6.10 // indirect
-	golang.org/x/crypto v0.56.0 // indirect
-	golang.org/x/sys v0.47.0 // indirect
+	golang.org/x/crypto v0.57.0 // indirect
+	golang.org/x/sys v0.48.0 // indirect
 )
